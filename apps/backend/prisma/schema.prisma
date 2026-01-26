@@ -1,0 +1,105 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  //url      = env("DATABASE_URL")
+}
+
+// ==================== PROYECTOS ====================
+
+model Project {
+  id           String       @id @default(cuid())
+  slug         String       @unique
+  title        String
+  description  String
+  imageUrl     String?
+  githubUrl    String?
+  liveUrl      String?
+  featured     Boolean      @default(false)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  technologies Technology[]
+}
+
+model Technology {
+  id          String       @id @default(cuid())
+  name        String       @unique
+  icon        String?
+  color       String?
+  projects    Project[]
+  experiences Experience[]
+}
+
+// ==================== SKILLS ====================
+
+model SkillCategory {
+  id     String  @id @default(cuid())
+  name   String  @unique // "Backend", "Frontend", "DevOps", etc.
+  order  Int     @default(0)
+  skills Skill[]
+}
+
+model Skill {
+  id           String        @id @default(cuid())
+  name         String
+  level        Int           // 1-100
+  icon         String?
+  categoryId   String
+  category     SkillCategory @relation(fields: [categoryId], references: [id])
+  certificates Certificate[]
+
+  @@index([categoryId])
+}
+
+// ==================== CERTIFICADOS ====================
+
+model Certificate {
+  id            String   @id @default(cuid())
+  title         String
+  issuer        String
+  issueDate     DateTime
+  credentialUrl String?
+  imageUrl      String?
+  skills        Skill[] // Skills que valida este certificado
+  createdAt     DateTime @default(now())
+}
+
+// ==================== EXPERIENCIA ====================
+
+model Experience {
+  id           String       @id @default(cuid())
+  company      String
+  position     String
+  description  String
+  location     String?
+  startDate    DateTime
+  endDate      DateTime?
+  current      Boolean      @default(false)
+  order        Int          @default(0)
+  technologies Technology[] // Tecnologías usadas en este trabajo
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+}
+
+// ==================== CONTACTO ====================
+
+model Contact {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([read])
+  @@index([createdAt])
+}
