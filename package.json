@@ -11,7 +11,16 @@
     "build": "turbo run build",
     "start": "turbo run start",
     "lint": "turbo run lint",
-    "clean": "turbo run clean"
+    "clean": "turbo run clean",
+
+    "db:migrate": "turbo run db:migrate",
+    "db:generate": "turbo run db:generate",
+    "db:studio": "turbo run db:studio",
+    "db:reset": "turbo run db:reset",
+    "db:seed": "turbo run db:seed",
+    "db:push": "turbo run db:push",
+    "db:migrate:prod": "turbo run db:migrate:prod"
+    
   },
   "devDependencies": {
     "rimraf": "^6.1.2",
