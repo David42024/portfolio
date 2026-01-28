@@ -23,7 +23,7 @@ export default function HomePage() {
             {/* Heading */}
             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight animate-fade-in delay-100">
               Hola, soy{" "}
-              <span className="text-gradient">Tu Nombre</span>
+              <span className="text-gradient">David Lucano</span>
             </h1>
 
             <p className="mt-6 text-xl sm:text-2xl text-muted-foreground max-w-2xl mx-auto animate-fade-in delay-200">

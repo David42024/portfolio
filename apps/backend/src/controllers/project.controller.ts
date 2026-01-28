@@ -1,25 +1,23 @@
-import { Request, Response, NextFunction } from "express";
+import { handleFetch } from "../common/controllers/handleFetch";
 import { projectRepository } from "../repositories/project.repository";
-import { AppError } from "../utils/AppError";
-import { success } from "zod";
-import { count } from "console";
 
-export const getAll = async (req: Request, res: Response, next: NextFunction) => {
-    try {
-        const projects = await projectRepository.findAll();
-        res.json(
-            {   
-                success: true,
-                data: projects,
-                count: projects.length
-            }
-        );
-    } catch (error) {
-        next(
-            new AppError(
-                'Error fetching projects',
-                500
-            )
-        );
-    }
-}
+
+export const getAllProjects =  handleFetch(
+    () => projectRepository.findAll(),
+    "Error fetching all projects"
+);
+
+export const getFeaturedProjects = handleFetch(
+  () => projectRepository.findFeatured(),
+  "Error fetching featured projects"
+);
+
+export const getProjectBySlug = handleFetch(
+    (req) => projectRepository.findBySlug(req.params.slug),
+    "Error fetching project by slug"
+);
+
+export const getProjectById = handleFetch(
+    (req) => projectRepository.findById(req.params.id),
+    "Error fetching project by ID"
+);

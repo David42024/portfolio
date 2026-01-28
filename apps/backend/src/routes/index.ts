@@ -1,5 +1,5 @@
 import { Router } from "express";
-//import projectRoutes from "./project.routes";
+import projectRoutes from "./project.routes";
 //import skillRoutes from "./skill.routes";
 //import certificateRoutes from "./certificate.routes";
 //import experienceRoutes from "./experience.routes";
@@ -12,7 +12,7 @@ const router = Router();
 router.use("/health", healthRoutes);
 
 // Recursos
-//router.use("/projects", projectRoutes);
+router.use("/projects", projectRoutes);
 //router.use("/skills", skillRoutes);
 //router.use("/certificates", certificateRoutes);
 //router.use("/experiences", experienceRoutes);
