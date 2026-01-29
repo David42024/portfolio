@@ -13,6 +13,15 @@ export type SkillWithCategories =
   Prisma.SkillGetPayload<typeof skillWithCategories>;
 
   
+const categoryWithSkills = {
+  include: {
+    skills: true,
+  },
+} satisfies Prisma.SkillCategoryDefaultArgs;
+
+export type SkillCategoryWithSkills =
+  Prisma.SkillCategoryGetPayload<typeof categoryWithSkills>;
+
 
 export class SkillRepository extends BaseRepository<SkillWithCategories> {
     async findAll(): Promise<SkillWithCategories[]> {
@@ -21,11 +30,13 @@ export class SkillRepository extends BaseRepository<SkillWithCategories> {
             orderBy: { level: "desc" },
         });
     }
-    async findCategories(): Promise<SkillCategory[]> {
+    async findCategories(): Promise<SkillCategoryWithSkills[]> {
         return prisma.skillCategory.findMany({
             orderBy: { order: "asc" },
+            ...categoryWithSkills,
         });
     }
+
     async findByCategory(categoryId: string): Promise<SkillWithCategories[]> {
         return prisma.skill.findMany({
             ...skillWithCategories,

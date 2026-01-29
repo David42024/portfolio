@@ -2,15 +2,26 @@ import { Prisma, Certificate, Experience} from '../../prisma/generated/client'
 import { prisma } from '../config/db';
 import { BaseRepository } from './base.repository';
 
-export class ExperienceRepository extends BaseRepository<Experience> {
-    async findAll(): Promise<Experience[]> {
+const experienceWithTechnologies = {
+    include: {
+        technologies: true,
+    },
+} satisfies Prisma.ExperienceDefaultArgs;
+
+export type ExperienceWithTechnologies =
+    Prisma.ExperienceGetPayload<typeof experienceWithTechnologies>;
+
+export class ExperienceRepository extends BaseRepository<ExperienceWithTechnologies> {
+    async findAll(): Promise<ExperienceWithTechnologies[]> {
         return prisma.experience.findMany({
+            ...experienceWithTechnologies,
             orderBy: { createdAt: "desc" },
         });
     }
 
-    async findById(id: string): Promise<Experience | null> {
+    async findById(id: string): Promise<ExperienceWithTechnologies | null> {
         return prisma.experience.findUnique({
+            ...experienceWithTechnologies,
             where: { id }
         });
     }

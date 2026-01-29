@@ -6,8 +6,10 @@ const router = Router();
 
 router.get("/", skillController.getAllSkills);
 router.get("/categories", skillController.getSkillCategories);
-router.get("/categories/:id", skillController.getSkillsByCategory);
-router.get("/:id", skillController.getSkillById);
+//router.get("/categories/:id", skillController.getSkillsByCategory);
+
+
+//router.get("/:id", skillController.getSkillById);
 
 
 export default router;
