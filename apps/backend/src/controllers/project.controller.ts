@@ -1,6 +1,7 @@
 import { handleFetch } from "../common/controllers/handleFetch";
-import { projectRepository } from "../repositories/project.repository";
+import { ProjectRepository } from "../repositories/project.repository";
 
+const projectRepository = new ProjectRepository();
 
 export const getAllProjects =  handleFetch(
     () => projectRepository.findAll(),

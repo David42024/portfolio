@@ -1,6 +1,6 @@
 import { Router } from "express";
 import projectRoutes from "./project.routes";
-//import skillRoutes from "./skill.routes";
+import skillRoutes from "./skill.routes";
 //import certificateRoutes from "./certificate.routes";
 //import experienceRoutes from "./experience.routes";
 //import contactRoutes from "./contact.routes";
@@ -13,7 +13,7 @@ router.use("/health", healthRoutes);
 
 // Recursos
 router.use("/projects", projectRoutes);
-//router.use("/skills", skillRoutes);
+router.use("/skills", skillRoutes);
 //router.use("/certificates", certificateRoutes);
 //router.use("/experiences", experienceRoutes);
 //router.use("/contact", contactRoutes);
