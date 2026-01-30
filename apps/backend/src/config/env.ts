@@ -11,7 +11,8 @@ const envSchema = z.object({
   DATABASE_URL: z.string().url(),
   REDIS_URL: z.string().url().optional(),
   CORS_ORIGIN: z.string().default("http://localhost:3000"),
-  
+  REVALIDATE_SECRET: z.string().default("misecretoxd"),
+  FRONTEND_URL: z.string().url().default("http://localhost:3000"),
   // Email (opcional)
   SMTP_HOST: z.string().optional(),
   SMTP_PORT: z.string().transform(Number).optional(),

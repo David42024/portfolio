@@ -1,11 +1,13 @@
 import { handleFetch } from "../common/controllers/handleFetch";
+import { CACHE_KEYS } from "../config/redis";
 import { ExperienceRepository } from "../repositories/experience.repository";
 
 const experienceRepository = new ExperienceRepository();
 
 export const getAllExperiences =  handleFetch(
     () => experienceRepository.findAll(),
-    "Error fetching all experiences"
+    "Error fetching all experiences",
+    { cacheKeyFn: CACHE_KEYS.EXPERIENCES }
 );
 
 export const getExperienceById = handleFetch(
