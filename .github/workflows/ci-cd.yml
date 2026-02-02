@@ -48,7 +48,7 @@ jobs:
           npx prisma db push
           npm test
         env:
-          DATABASE_URL: ${{ env.DATABASE_URL }}
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/portfolio_test
 
       # 🐳 PASO CRÍTICO: Login en GitHub Container Registry
       - name: Log in to GHCR
