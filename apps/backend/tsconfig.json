@@ -13,6 +13,6 @@
     "moduleResolution": "node",    
     "types": ["node"]
   },
-  "include": ["src", "prisma/generated"],
+  "include": ["src", "prisma/generated", "tests"],
   "exclude": ["node_modules", "dist"]
 }

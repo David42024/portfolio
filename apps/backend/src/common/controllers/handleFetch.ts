@@ -51,9 +51,15 @@ export const handleFetch =  <T>(
 
             });
         } catch (error) {
-            next(
-                new AppError(`${errorMessage}: ${(error as Error).message}`, 500)
-            );
+            // Si ya es un AppError, pasarlo directamente
+            if (error instanceof AppError) {
+                next(error);
+            } else {
+                // Si es otro tipo de error, envolver en AppError con código 500
+                next(
+                    new AppError(`${errorMessage}: ${(error as Error).message}`, 500)
+                );
+            }
         }
     }
 }
