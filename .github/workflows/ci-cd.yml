@@ -45,7 +45,7 @@ jobs:
 
       # 🧱 Crear tablas en la BD temporal
       - name: Push Prisma schema
-        run: npx prisma db push
+        run: npx prisma db push --schema=../apps/backend/prisma/schema.prisma
 
       - name: Run tests
         run: npm test
