@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Copiar package.json
 COPY package*.json ./
-COPY COPY apps/backend/prisma ./apps/backend/prisma/
+COPY apps/backend/prisma ./apps/backend/prisma/
 
 # Instalar dependencias
 RUN npm ci
