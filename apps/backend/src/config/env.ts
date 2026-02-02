@@ -26,7 +26,12 @@ const parsed = envSchema.safeParse(process.env);
 if (!parsed.success) {
   console.error("❌ Variables de entorno inválidas:");
   console.error(parsed.error.format());
-  process.exit(1);
+
+  if (process.env.NODE_ENV !== "test") {
+    process.exit(1);
+  }
+
+  throw new Error("Invalid environment variables");
 }
 
 export const env = parsed.data;
