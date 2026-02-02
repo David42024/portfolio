@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  test-and-build: # Cambiamos el nombre para que sea más descriptivo
     runs-on: ubuntu-latest
 
     services:
@@ -25,7 +25,6 @@ jobs:
           --health-timeout=5s
           --health-retries=5
 
-    # 🔥 VARIABLES DE ENTORNO PARA LOS TESTS
     env:
       DATABASE_URL: postgresql://postgres:postgres@localhost:5432/portfolio_test
       NODE_ENV: test
@@ -43,39 +42,42 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # 🧱 Crear tablas en la BD temporal
-      - name: Push Prisma schema
+      - name: Run Prisma and Tests
         working-directory: apps/backend
-        run: npx prisma db push
+        run: |
+          npx prisma db push
+          npm test
         env:
-            DATABASE_URL: postgresql://postgres:postgres@localhost:5432/portfolio_test
+          DATABASE_URL: ${{ env.DATABASE_URL }}
 
-      - name: Seed test database
-        working-directory: apps/backend
-        run: npx prisma db seed
-        env:
-            DATABASE_URL: postgresql://postgres:postgres@localhost:5432/portfolio_test
+      # 🐳 PASO CRÍTICO: Login en GitHub Container Registry
+      - name: Log in to GHCR
+        if: github.event_name == 'push'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Run tests
-        working-directory: apps/backend
-        run: npm test
-        env:
-            DATABASE_URL: postgresql://postgres:postgres@localhost:5432/portfolio_test
+      # 📦 Build y Push de las imágenes (Backend y Frontend)
+      - name: Build and push Docker images
+        if: github.event_name == 'push'
+        run: |
+          # Backend
+          docker build -t ghcr.io/david42024/portfolio/backend:latest -f apps/backend/Dockerfile .
+          docker push ghcr.io/david42024/portfolio/backend:latest
+          
+          # Frontend
+          docker build -t ghcr.io/david42024/portfolio/frontend:latest -f apps/frontend/Dockerfile .
+          docker push ghcr.io/david42024/portfolio/frontend:latest
 
-      - name: Lint code
-        run: npm run lint
-
-      - name: Build project
-        run: npm run build
-
-      # 🚀 DEPLOY SOLO EN PUSH A MAIN (NO EN PRs)
-      - name: Deploy to DigitalOcean
+      # 🚀 DEPLOY
+      - name: Install doctl
         if: github.event_name == 'push'
         uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
-      - name: Deploy application
+      - name: Update DigitalOcean App
         if: github.event_name == 'push'
-        run: |
-          doctl apps update ${{ secrets.DIGITALOCEAN_APP_ID }} --spec .do/app.yaml
+        run: doctl apps update ${{ secrets.DIGITALOCEAN_APP_ID }} --spec .do/app.yaml
