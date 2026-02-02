@@ -21,7 +21,7 @@ WORKDIR /app
 COPY apps/backend ./apps/backend
 
 # Compilar TypeScript
-WORKDIR /app/apps/backend
+WORKDIR  /apps/backend
 RUN npm run build
 
 # Puerto
