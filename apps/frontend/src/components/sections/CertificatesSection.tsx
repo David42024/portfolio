@@ -30,7 +30,7 @@ export async function CertificatesSection() {
         {/* Header */}
         <div className="max-w-2xl mb-12">
           <span className="text-primary font-mono text-sm">
-            // Certificaciones
+            Certificaciones
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold mt-2">
             Certificados y Logros

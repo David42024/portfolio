@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { api, Project } from "@/services/api";
+import Image from "next/image";
 
 async function getProjects(): Promise<Project[]> {
   try {
@@ -19,7 +20,7 @@ export async function ProjectsSection() {
       <div className="container-custom">
         {/* Header */}
         <div className="max-w-2xl mb-12">
-          <span className="text-primary font-mono text-sm">// Proyectos</span>
+          <span className="text-primary font-mono text-sm">Proyectos</span>
           <h2 className="text-3xl sm:text-4xl font-bold mt-2">
             Trabajo Destacado
           </h2>
@@ -79,9 +80,11 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       {/* Image */}
       <div className="aspect-video bg-muted relative overflow-hidden">
         {project.imageUrl ? (
-          <img
+          <Image
             src={project.imageUrl}
             alt={project.title}
+            fill
+            sizes="(min-width: 768px) 50vw, 100vw"
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
         ) : (

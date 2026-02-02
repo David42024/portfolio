@@ -26,7 +26,7 @@ export async function ExperienceSection() {
       <div className="container-custom">
         {/* Header */}
         <div className="max-w-2xl mb-12">
-          <span className="text-primary font-mono text-sm">// Experiencia</span>
+          <span className="text-primary font-mono text-sm">Experiencia</span>
           <h2 className="text-3xl sm:text-4xl font-bold mt-2">
             Trayectoria Profesional
           </h2>

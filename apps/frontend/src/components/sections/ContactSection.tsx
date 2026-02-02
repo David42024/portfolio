@@ -44,7 +44,7 @@ export function ContactSection() {
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <span className="text-primary font-mono text-sm">// Contacto</span>
+            <span className="text-primary font-mono text-sm">Contacto</span>
             <h2 className="text-3xl sm:text-4xl font-bold mt-2">
               ¿Tienes un proyecto en mente?
             </h2>
