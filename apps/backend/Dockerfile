@@ -4,26 +4,29 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# Copiar package.json
+# Copiar package.json de la raíz y del backend
 COPY package*.json ./
+COPY apps/backend/package*.json ./apps/backend/
 COPY apps/backend/prisma ./apps/backend/prisma/
 
-# Instalar dependencias
-RUN npm ci
+# Instalar dependencias del backend
+WORKDIR /app/apps/backend
+RUN npm install
 
 # Generar Prisma Client
-RUN npx prisma generate
+RUN npx prisma generate --schema=./prisma/schema.prisma
 
-# Copiar código fuente
-COPY . .
+# Copiar código fuente del backend
+WORKDIR /app
+COPY apps/backend ./apps/backend
 
 # Compilar TypeScript
+WORKDIR /app/apps/backend
 RUN npm run build
 
 # Puerto
 EXPOSE 4000
 
-# Variables de entorno
 ENV NODE_ENV=production
 ENV PORT=4000
 
