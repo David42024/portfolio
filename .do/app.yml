@@ -1,0 +1,56 @@
+name: portfolio
+region: nyc
+
+services:
+  # ==================== BACKEND ====================
+  - name: backend
+    image:
+      registry_type: GHCR
+      registry: david42024
+      repository: portfolio/backend
+      tag: latest
+    
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    http_port: 4000
+    
+    health_check:
+      http_path: /api/v1/health
+      initial_delay_seconds: 15 # Un poco más de margen para el arranque
+      period_seconds: 30
+    
+    envs:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "4000"
+      - key: CORS_ORIGIN
+        value: ${APP_URL}
+    
+    routes:
+      - path: /api
+
+  # ==================== FRONTEND ====================
+  - name: frontend
+    image:
+      registry_type: GHCR
+      registry: david42024
+      repository: portfolio/frontend
+      tag: latest
+    
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    http_port: 3000
+    
+    health_check:
+      http_path: /
+      initial_delay_seconds: 15
+    
+    envs:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_API_URL
+        value: ${APP_URL}/api/v1
+    
+    routes:
+      - path: /
