@@ -1,28 +1,25 @@
-import {Response, Request, NextFunction} from 'express';
+import { Response, Request, NextFunction } from 'express';
+import { AppError } from '../utils/AppError';
 
-export const errorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
+export const errorHandler = (
+  err: AppError | Error,
+  req: Request,
+  res: Response,
+  _next: NextFunction
+) => {
+  const statusCode = err instanceof AppError ? err.statusCode : 500;
+  const status = err instanceof AppError ? err.status : 'error';
+  const message = err.message || 'Internal Server Error';
 
-    const statusCode = err.statusCode || 500;
-    const status = err.status || 'error';
-    const message = err.message || 'Internal Server Error';
+  const isDevelopment = process.env.NODE_ENV === 'development';
 
-    if (process.env.NODE_ENV === 'development') {
-        console.error('Error 💥:', err);
+  const response = {
+    success: false,
+    status,
+    message,
+    ...(isDevelopment && { stack: err.stack }),
+    ...(err instanceof AppError && err.code && { code: err.code }),
+  };
 
-       res.status(statusCode).json({
-            success: false,
-            status,
-            message,
-            ...(process.env.NODE_ENV === 'development' && { stack: err.stack }),
-            ...(err.code && { code: err.code }),
-        });
-    } else {
-        // Producción: no mostrar stack trace ni detalles internos
-        res.status(statusCode).json({
-            success: false,
-            status,
-            message,
-            ...(err.code && { code: err.code }),
-        });
-    }
-}
+  res.status(statusCode).json(response);
+};

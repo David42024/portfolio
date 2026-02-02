@@ -1,4 +1,4 @@
-import { Prisma, Certificate, Experience} from '../../prisma/generated/client'
+import { Prisma} from '../../prisma/generated/client'
 import { prisma } from '../config/db';
 import { BaseRepository } from './base.repository';
 

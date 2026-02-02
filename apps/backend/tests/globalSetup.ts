@@ -1,6 +1,5 @@
 import "dotenv/config";
 import { prisma } from "../src/config/db";
-import { beforeAll, afterAll } from "vitest";
 
 export default async function () {
   console.log("🌍 Setup global de tests");

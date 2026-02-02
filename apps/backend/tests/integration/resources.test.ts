@@ -2,8 +2,26 @@ import { describe, it, expect, beforeAll, afterAll } from "vitest";
 import { prisma } from "../../src/config/db";
 import request from "supertest";
 import app from "../../src/app";
-import { response } from "express";
 
+
+interface Skill {
+    id: string;
+    name: string;
+    level: number;
+    icon: string;
+    categoryId: string;
+}
+
+interface Certificate {
+    id: string;
+    title: string;
+    issuer: string;
+    issueDate: string;
+    credentialUrl: string;
+    imageUrl: string;
+    createdAt: string;
+    skills: Skill[];
+}
 
 describe("Certificates API ", () => { 
     let testCertificateId: string;
@@ -17,14 +35,20 @@ describe("Certificates API ", () => {
             },
         });
 
+        // Create a test skill first
+        const skill = await prisma.skill.findFirst();
+        
         const certificateData = {
             title: "Test Certificate",
             issuer: "Test Issuer",
             issueDate: new Date("2023-01-01"),
+            credentialUrl: "https://credentials.example.com/test",
             imageUrl: "https://example.com/certificate/test",
+            skills: skill ? { connect: [{ id: skill.id }] } : undefined,
         };
         const certificate = await prisma.certificate.create({
             data: certificateData,
+            include: { skills: true },
         });
         testCertificateId = certificate.id;
     });
@@ -57,14 +81,18 @@ describe("Certificates API ", () => {
                 .expect(200);
 
             const cert = response.body.data.find(
-                (c: any) => c.title === "Test Certificate"
+                (c: Certificate) => c.title === "Test Certificate"
             );
 
-            expect(cert).toBeDefined();
-            expect(cert).toHaveProperty("title");
-            expect(cert).toHaveProperty("issuer");
-            expect(cert).toHaveProperty("issueDate");
-            expect(cert).toHaveProperty("skills");
+            expect(cert).toMatchObject({
+                title: "Test Certificate",
+                issuer: "Test Issuer",
+                issueDate: expect.any(String),
+            });
+            expect(cert.skills[0]).toMatchObject({
+                id: expect.any(String),
+                name: expect.any(String),
+            });
         });
 
     });
