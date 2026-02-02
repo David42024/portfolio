@@ -1,0 +1,45 @@
+name: Build & Deploy to DigitalOcean
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+
+permissions:
+    contents: read
+    id-token: write
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3
+
+            - name: Set up Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: '22'
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: Run tests
+              run: npm test
+
+            - name: Lint code
+              run: npm run lint
+
+            - name: Build project
+              run: npm run build
+
+            - name: Deploy to DigitalOcean
+              uses: digitalocean/action-doctl@v2
+              with:
+                  token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+            - name: Deploy application
+              run: |
+                  doctl apps update ${{ secrets.DIGITALOCEAN_APP_ID }} --spec .do/app.yaml
