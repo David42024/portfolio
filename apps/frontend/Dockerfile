@@ -2,16 +2,16 @@
 
 FROM node:20-alpine
 
-WORKDIR /app
+WORKDIR /app/apps/frontend
 
-# Copiar package.json
-COPY package*.json ./
+# Copiar archivos de dependencias
+COPY apps/frontend/package*.json ./
 
 # Instalar dependencias
-RUN npm ci
+RUN npm install
 
 # Copiar código fuente
-COPY . .
+COPY apps/frontend ./
 
 # Variable de entorno para build
 ARG NEXT_PUBLIC_API_URL
@@ -23,7 +23,6 @@ RUN npm run build
 # Puerto
 EXPOSE 3000
 
-# Variables de entorno
 ENV NODE_ENV=production
 ENV PORT=3000
 
