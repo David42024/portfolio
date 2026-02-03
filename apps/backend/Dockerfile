@@ -21,6 +21,8 @@ COPY apps/backend/tsconfig.json ./
 # Compilar TypeScript
 RUN npm run build
 
+RUN npm prune --production
+
 # Puerto
 EXPOSE 4000
 
