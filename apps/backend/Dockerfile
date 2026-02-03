@@ -9,7 +9,7 @@ COPY apps/backend/package*.json ./
 COPY apps/backend/prisma ./prisma/
 
 # Instalar dependencias
-RUN npm install
+RUN npm install --include=dev
 
 # Generar Prisma Client
 RUN npx prisma generate --schema=./prisma/schema.prisma
