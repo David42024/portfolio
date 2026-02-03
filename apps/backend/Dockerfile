@@ -2,26 +2,23 @@
 
 FROM node:20-alpine
 
-WORKDIR /app
-
-# Copiar package.json de la raíz y del backend
-COPY package*.json ./
-COPY apps/backend/package*.json ./apps/backend/
-COPY apps/backend/prisma ./apps/backend/prisma/
-
-# Instalar dependencias del backend
 WORKDIR /app/apps/backend
+
+# Copiar archivos de dependencias
+COPY apps/backend/package*.json ./
+COPY apps/backend/prisma ./prisma/
+
+# Instalar dependencias
 RUN npm install
 
 # Generar Prisma Client
 RUN npx prisma generate --schema=./prisma/schema.prisma
 
-# Copiar código fuente del backend
-WORKDIR /app
-COPY apps/backend ./apps/backend
+# Copiar código fuente
+COPY apps/backend/src ./src
+COPY apps/backend/tsconfig.json ./
 
 # Compilar TypeScript
-WORKDIR  /apps/backend
 RUN npm run build
 
 # Puerto
