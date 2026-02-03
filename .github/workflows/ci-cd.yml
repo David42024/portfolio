@@ -85,4 +85,4 @@ jobs:
 
       - name: Update DigitalOcean App
         if: github.event_name == 'push'
-        run: doctl apps update ${{ secrets.DIGITALOCEAN_APP_ID }} --spec .do/app.yaml
+        run: doctl apps update ${{ secrets.DIGITALOCEAN_APP_ID }} --spec .do/app.yml
