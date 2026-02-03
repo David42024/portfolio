@@ -30,4 +30,4 @@ ENV NODE_ENV=production
 ENV PORT=4000
 
 # Iniciar
-CMD ["node", "dist/index.js"]
+CMD ["node", "dist/src/index.js"]
