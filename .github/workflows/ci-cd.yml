@@ -58,7 +58,7 @@ jobs:
       - name: Generate Prisma Client
         working-directory: apps/backend
         run: |
-          npx prisma generate --schema ./prisma/schema.prisma
+          npx prisma generate
           echo "Prisma Client generation completed"
           ls -la node_modules/.prisma/client/ || echo ".prisma/client not found"
 
