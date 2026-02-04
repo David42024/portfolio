@@ -8,6 +8,7 @@ WORKDIR /app/apps/backend
 COPY apps/backend/package*.json ./
 COPY apps/backend/prisma.config.ts ./
 COPY apps/backend/prisma ./prisma/
+COPY apps/backend/.env.example .env
 
 # Instalar dependencias
 RUN npm install --include=dev
