@@ -48,6 +48,7 @@ jobs:
         run: npm ci
 
       - name: Generate Prisma Client
+        working-directory: apps/backend
         run: npx prisma generate
 
       - name: Run Prisma and Tests
