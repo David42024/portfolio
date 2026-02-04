@@ -5,7 +5,10 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  output          = "./generated/client" // Ruta relativa dentro del proyecto
+  engineType      = "library"            // Recomendado para Node.js
+  // binaryTargets   = ["native", "rhel-openssl-3.0.x"] // Si usas Docker/producción específica
 }
 
 datasource db {
