@@ -1,4 +1,4 @@
-import { Prisma, Project } from "../../prisma/generated/client.js";
+import { Prisma, Project } from "@prisma/client";
 import { BaseRepository } from "./base.repository.js";
 
 const projectWithTechnologies = {
