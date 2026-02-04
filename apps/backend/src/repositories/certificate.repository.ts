@@ -1,4 +1,4 @@
-import { Prisma } from '@prisma/client';
+import { Prisma } from '../../prisma/generated/client';
 import { prisma } from '../config/db.js';
 import { BaseRepository } from './base.repository.js';
 

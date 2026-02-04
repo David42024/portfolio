@@ -1,5 +1,5 @@
 import { prisma } from "../config/db";
-import { Contact } from "@prisma/client";
+import { Contact } from "../../prisma/generated/client";
 
 export const contactRepository = {
   async findAll(): Promise<Contact[]> {
