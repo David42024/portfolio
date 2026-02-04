@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "build": "tsc && node -e \"require('fs').cpSync('prisma/generated','dist/prisma/generated',{recursive:true});\"",
+    "build": "tsc",
     "start": "node dist/index.js",
     "test": "vitest",
     "test:watch": "vitest --watch",
@@ -24,8 +24,8 @@
     "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
-    "@prisma/adapter-pg": "^6.19.2",
-    "@prisma/client": "^6.19.2",
+    "@prisma/adapter-pg": "^7.3.0",
+    "@prisma/client": "^7.3.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
@@ -33,7 +33,7 @@
     "install": "^0.13.0",
     "morgan": "^1.10.1",
     "pg": "^8.17.2",
-    "prisma": "^6.19.2",
+    "prisma": "^7.3.0",
     "redis": "^5.10.0",
     "zod": "^4.3.6"
   },
