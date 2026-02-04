@@ -1,4 +1,5 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000/api/v1";
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3001";
+const API_URL = `${APP_URL}/api/v1`;
 
 
 interface ApiResponse<T> {

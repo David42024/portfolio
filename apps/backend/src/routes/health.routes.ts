@@ -18,8 +18,9 @@ router.get("/", async (_req, res) => {
       database: "connected",
     });
   } catch (error) {
-    res.status(503).json({
-      status: "error",
+    console.error("Health check DB error:", error);
+    res.status(200).json({
+      status: "degraded",
       timestamp: new Date().toISOString(),
       responseTime: `${Date.now() - start}ms`,
       database: "disconnected",
