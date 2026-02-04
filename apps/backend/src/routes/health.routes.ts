@@ -7,7 +7,8 @@ router.get("/", async (_req, res) => {
   const start = Date.now();
 
   try {
-    await prisma.$queryRaw`SELECT 1`;
+    // Use ORM query instead of raw SQL to avoid PrismaPg adapter issues
+    await prisma.project.findFirst();
 
     res.json({
       status: "ok",
