@@ -1,6 +1,6 @@
-import { handleFetch } from "../common/controllers/handleFetch";
-import { ProjectRepository } from "../repositories/project.repository";
-import { CACHE_KEYS } from "../config/redis";
+import { handleFetch } from "../common/controllers/handleFetch.js";
+import { ProjectRepository } from "../repositories/project.repository.js";
+import { CACHE_KEYS } from "../config/redis.js";
 
 const projectRepository = new ProjectRepository();
 

@@ -1,6 +1,6 @@
-import { handleFetch } from "../common/controllers/handleFetch";
-import { CACHE_KEYS } from "../config/redis";
-import { ExperienceRepository } from "../repositories/experience.repository";
+import { handleFetch } from "../common/controllers/handleFetch.js";
+import { CACHE_KEYS } from "../config/redis.js";
+import { ExperienceRepository } from "../repositories/experience.repository.js";
 
 const experienceRepository = new ExperienceRepository();
 

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import * as certificateController from "../controllers/certificate.controller";
+import * as certificateController from "../controllers/certificate.controller.js";
 
 const router = Router();
 

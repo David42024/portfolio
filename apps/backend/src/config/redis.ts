@@ -1,4 +1,4 @@
-import { env } from "./env";
+import { env } from "./env.js";
 import {createClient, RedisClientType} from "redis";
 
 let redisClient: RedisClientType | null = null;

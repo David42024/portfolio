@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { cache, CACHE_TAGS } from "../config/redis";
-import { env } from "../config/env";
+import { cache, CACHE_TAGS } from "../config/redis.js";
+import { env } from "../config/env.js";
 
 const router = Router();
 

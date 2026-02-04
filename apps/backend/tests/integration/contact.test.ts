@@ -1,7 +1,7 @@
 import {describe, it, expect, afterAll} from "vitest";
 import request from "supertest";
-import { prisma } from "../../src/config/db";
-import app from "../../src/app";
+import { prisma } from "../../src/config/db.js";
+import app from "../../src/app.js";
 
 describe("contact API", () => {
     afterAll(() => {

@@ -1,0 +1,5 @@
+node_modules
+dist
+prisma/generated
+apps/backend/prisma/generated
+apps/frontend/.next

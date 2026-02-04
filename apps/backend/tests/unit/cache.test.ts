@@ -19,7 +19,7 @@ vi.mock("redis", () => ({
 }));
 
 // 2. Mock de Env
-vi.mock("../../src/config/env", () => ({
+vi.mock("../../src/config/env.js", () => ({
   env: {
     REDIS_URL: "redis://localhost:6379"
   }
@@ -32,7 +32,7 @@ describe("Cache System", () => {
     vi.clearAllMocks();
     
     // Importamos de nuevo el mock de env para resetearlo
-    const { env } = await import("../../src/config/env");
+    const { env } = await import("../../src/config/env.js");
     env.REDIS_URL = "redis://localhost:6379";
   });
 
@@ -40,7 +40,7 @@ describe("Cache System", () => {
     
     it("set(): guarda datos si hay conexión", async () => {
       // Import dinámico para que redisClient sea null al inicio
-      const { cache, CACHE_KEYS } = await import("../../src/config/redis");
+      const { cache, CACHE_KEYS } = await import("../../src/config/redis.js");
       
       redisMocks.setEx.mockResolvedValue("OK");
       const data = { id: 1 };
@@ -52,11 +52,11 @@ describe("Cache System", () => {
 
     it("get(): retorna null y NO llama a Redis si REDIS_URL no existe", async () => {
       // 1. Quitamos la URL
-      const { env } = await import("../../src/config/env");
+      const { env } = await import("../../src/config/env.js");
       env.REDIS_URL = undefined;
 
       // 2. Importamos el cache (aquí redisClient empezará como null)
-      const { cache } = await import("../../src/config/redis");
+      const { cache } = await import("../../src/config/redis.js");
 
       const result = await cache.get("test-key");
 
@@ -66,7 +66,7 @@ describe("Cache System", () => {
     });
 
     it("get(): retorna datos parseados si la key existe", async () => {
-      const { cache } = await import("../../src/config/redis");
+      const { cache } = await import("../../src/config/redis.js");
       
       const mockData = { name: "Vitest" };
       redisMocks.get.mockResolvedValue(JSON.stringify(mockData));
@@ -78,7 +78,7 @@ describe("Cache System", () => {
     });
 
     it("invalidateTag(): llama a del con el patrón correcto", async () => {
-      const { cache, CACHE_TAGS } = await import("../../src/config/redis");
+      const { cache, CACHE_TAGS } = await import("../../src/config/redis.js");
       
       redisMocks.keys.mockResolvedValue(["projects:1"]);
       

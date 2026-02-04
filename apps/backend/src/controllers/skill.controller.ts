@@ -1,6 +1,6 @@
-import { handleFetch } from "../common/controllers/handleFetch";
-import { SkillRepository } from "../repositories/skill.repository";
-import { CACHE_KEYS } from "../config/redis";
+import { handleFetch } from "../common/controllers/handleFetch.js";
+import { SkillRepository } from "../repositories/skill.repository.js";
+import { CACHE_KEYS } from "../config/redis.js";
 
 const skillRepository = new SkillRepository();
 

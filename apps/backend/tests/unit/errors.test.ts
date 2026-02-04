@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import {AppError} from '../../src/utils/AppError';
+import {AppError} from '../../src/utils/AppError.js';
 
 describe('AppError', () => {
     it('debería crear una instancia de AppError con los parámetros correctos', () => {

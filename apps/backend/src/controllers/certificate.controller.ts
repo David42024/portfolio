@@ -1,7 +1,7 @@
-import { handleFetch } from "../common/controllers/handleFetch";
-import { CertificateRepository } from "../repositories/certificate.repository";
-import { CACHE_KEYS } from "../config/redis";
-import { AppError } from "../utils/AppError";
+import { handleFetch } from "../common/controllers/handleFetch.js";
+import { CertificateRepository } from "../repositories/certificate.repository.js";
+import { CACHE_KEYS } from "../config/redis.js";
+import { AppError } from "../utils/AppError.js";
 
 const certificateRepository = new CertificateRepository();
 

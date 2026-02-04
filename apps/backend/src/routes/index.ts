@@ -1,12 +1,12 @@
 import { Router } from "express";
-import projectRoutes from "./project.routes";
-import skillRoutes from "./skill.routes";
-import certificateRoutes from "./certificate.routes";
-import experienceRoutes from "./experience.routes";
-import contactRoutes from "./contact.routes";
-import healthRoutes from "./health.routes";
+import projectRoutes from "./project.routes.js";
+import skillRoutes from "./skill.routes.js";
+import certificateRoutes from "./certificate.routes.js";
+import experienceRoutes from "./experience.routes.js";
+import contactRoutes from "./contact.routes.js";
+import healthRoutes from "./health.routes.js";
 
-import revalidateRoutes from "./revalidate.routes";
+import revalidateRoutes from "./revalidate.routes.js";
 
 const router = Router();
 

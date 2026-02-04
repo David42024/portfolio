@@ -1,6 +1,6 @@
-import { Prisma} from '../../prisma/generated/client'
-import { prisma } from '../config/db';
-import { BaseRepository } from './base.repository';
+import { Prisma } from '../../prisma/generated/client';
+import { prisma } from '../config/db.js';
+import { BaseRepository } from './base.repository.js';
 
 const certificateWithSkills = {
     include: {

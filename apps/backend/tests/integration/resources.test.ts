@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll, afterAll } from "vitest";
-import { prisma } from "../../src/config/db";
+import { prisma } from "../../src/config/db.js";
 import request from "supertest";
-import app from "../../src/app";
+import app from "../../src/app.js";
 
 
 interface Skill {

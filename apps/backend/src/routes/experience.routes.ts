@@ -1,5 +1,5 @@
 import { Router } from "express";
-import * as experienceController from "../controllers/experience.controller";
+import * as experienceController from "../controllers/experience.controller.js";
 
 const router = Router();
 

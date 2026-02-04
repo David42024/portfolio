@@ -4,7 +4,7 @@ import {env} from './config/env';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import {Request, Response} from 'express';
-import routes from './routes';
+import routes from './routes/index';
 import { errorHandler } from "./middlewares/errorHandler";
 import { notFoundHandler } from "./middlewares/notFoundHandler";
 

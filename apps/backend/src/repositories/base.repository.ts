@@ -1,4 +1,4 @@
-import { prisma } from "../config/db";
+import { prisma } from "../config/db.js";
 
 export abstract class BaseRepository<T> {
   protected prisma = prisma;

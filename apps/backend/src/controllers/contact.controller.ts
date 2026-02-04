@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { z } from "zod";
-import { contactRepository } from "../repositories/contact.repository";
-import { AppError } from "../utils/AppError";
+import { contactRepository } from "../repositories/contact.repository.js";
+import { AppError } from "../utils/AppError.js";
 
 // Schema de validación
 const contactSchema = z.object({

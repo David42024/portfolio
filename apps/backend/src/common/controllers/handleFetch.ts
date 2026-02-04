@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { AppError } from "../../utils/AppError";
-import { cache } from "../../config/redis";
+import { AppError } from "../../utils/AppError.js";
+import { cache } from "../../config/redis.js";
 
 type AsyncRepoFunction<T> = (req: Request) => Promise<T>;
 type CacheKeyFunction = (req: Request) => string;
