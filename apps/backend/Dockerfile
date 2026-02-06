@@ -15,7 +15,9 @@ COPY . .
 RUN npx prisma generate --schema=apps/backend/prisma/schema.prisma
 
 # 4️⃣ Build TS
-RUN npm run build
+RUN npm run build --workspace=apps/backend
+RUN npm prune --omit=dev
+
 
 ENV NODE_ENV=production
 
