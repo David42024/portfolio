@@ -61,7 +61,7 @@ services:
       - key: NODE_ENV
         value: production
       - key: NEXT_PUBLIC_API_URL
-        value: ${APP_URL}/api
+        value: ${APP_URL}/api/v1
     
     routes:
       - path: /
