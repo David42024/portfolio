@@ -116,8 +116,10 @@ jobs:
           file: ./apps/frontend/Dockerfile
           push: true
           tags: |
-            ${{ env.FRONTEND_IMAGE }}:latest
-            ${{ env.FRONTEND_IMAGE }}:${{ github.sha }}
+            ghcr.io/david42024/portfolio/frontend:latest
+            ghcr.io/david42024/portfolio/frontend:${{ github.sha }}
+          build-args: |
+            NEXT_PUBLIC_API_URL=https://my-portfolio-exfg4.ondigitalocean.app/api/v1
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
