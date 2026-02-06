@@ -50,13 +50,13 @@ jobs:
       - name: 🔍 Lint
         run: npm run lint --if-present
 
-      - name: 🔍 Type check
-        working-directory: apps/backend
-        run: npm run type-check --if-present
-
       - name: 🗄️ Generate Prisma Client
         working-directory: apps/backend
         run: npx prisma generate
+      
+      - name: 🔍 Type check          # ← Después de generate
+        working-directory: apps/backend
+        run: npm run type-check --if-present
 
       - name: 🗄️ Push DB Schema
         working-directory: apps/backend
