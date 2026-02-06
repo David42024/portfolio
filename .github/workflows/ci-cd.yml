@@ -139,8 +139,19 @@ jobs:
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
+      - name: 📝 Render app spec
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          REDIS_URL: ${{ secrets.REDIS_URL }}
+          REVALIDATE_SECRET: ${{ secrets.REVALIDATE_SECRET }}
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gettext
+          envsubst < .do/app.yml > .do/app.generated.yml
+          sed -i "s/tag: latest/tag: ${{ github.sha }}/g" .do/app.generated.yml
+
       - name: 🚀 Deploy to DigitalOcean
-        run: doctl apps update ${{ secrets.DIGITALOCEAN_APP_ID }} --spec .do/app.yml
+        run: doctl apps update ${{ secrets.DIGITALOCEAN_APP_ID }} --spec .do/app.generated.yml
 
       - name: ✅ Deploy complete
         run: echo "🎉 Deploy completado exitosamente"

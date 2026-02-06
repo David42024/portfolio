@@ -29,13 +29,16 @@ services:
         value: ${APP_URL}
       - key: DATABASE_URL
         scope: RUN_TIME
-        #type: SECRET
+        type: SECRET
+        value: ${DATABASE_URL}
       - key: REDIS_URL
         scope: RUN_TIME
-        #type: SECRET
+        type: SECRET
+        value: ${REDIS_URL}
       - key: REVALIDATE_SECRET
         scope: RUN_TIME
-        #type: SECRET
+        type: SECRET
+        value: ${REVALIDATE_SECRET}
     
     routes:
       - path: /api
