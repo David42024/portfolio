@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { cache, CACHE_TAGS } from "../config/redis.js";
-import { env } from "../config/env.js";
+import { cache, CACHE_TAGS } from "../config/redis";
+import { env } from "../config/env";
 
 const router = Router();
 
@@ -42,7 +42,7 @@ router.post("/", async (req, res) => {
 });
 
 router.post("/all", async (req, res) => {
-  const { secret } = req.body;
+const secret = req.headers["x-revalidate-secret"];
 
   if (secret !== env.REVALIDATE_SECRET) {
     return res.status(401).json({
@@ -62,7 +62,7 @@ router.post("/all", async (req, res) => {
       timestamp: new Date().toISOString(),
     });
   } catch (error) {
-    console.error("Error revalidating all:", error);
+    console.error("Cache reset error:", error);
     res.status(500).json({
       success: false,
       error: "Failed to invalidate cache",

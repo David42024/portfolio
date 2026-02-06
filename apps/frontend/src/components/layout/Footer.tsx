@@ -48,7 +48,7 @@ const socialLinks = [
   },
   {
     name: "Email",
-    href: "mailto:tu@email.com",
+    href: "mailto:thelucano37@gmail.com",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +95,7 @@ export function Footer() {
                 </span>
               </div>
               <div>
-                <span className="font-semibold text-foreground">Tu Nombre</span>
+                <span className="font-semibold text-foreground">David Lucano</span>
                 <span className="text-muted-foreground text-sm block">
                   Backend Developer
                 </span>
@@ -148,10 +148,10 @@ export function Footer() {
             <ul className="space-y-3 text-muted-foreground">
               <li>
                 <a
-                  href="mailto:tu@email.com"
+                  href="mailto:thelucano37@gmail.com"
                   className="hover:text-primary transition-colors"
                 >
-                  tu@email.com
+                  thelucano37@gmail.com
                 </a>
               </li>
               <li>
@@ -173,7 +173,7 @@ export function Footer() {
         {/* Bottom */}
         <div className="mt-12 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            © {currentYear} Tu Nombre. Todos los derechos reservados.
+            © {currentYear} David Lucano. Todos los derechos reservados.
           </p>
 
           <p className="text-sm text-muted-foreground flex items-center gap-1.5">

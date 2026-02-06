@@ -61,7 +61,7 @@ export function Header() {
               </div>
               <div className="hidden sm:block">
                 <span className="font-semibold text-foreground">
-                  Tu Nombre
+                  David Lucano
                 </span>
                 <span className="text-muted-foreground text-sm block -mt-1">
                   Backend Developer
@@ -98,9 +98,10 @@ export function Header() {
 
               {/* Resume Button - Desktop */}
               <Link
-                href="/resume.pdf"
+                href="/files/resume.pdf"
                 target="_blank"
                 className="hidden md:flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground font-medium text-sm hover:bg-primary/90 transition-colors focus-ring"
+                download
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

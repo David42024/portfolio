@@ -19,8 +19,8 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Tu Nombre | Backend Developer",
-    template: "%s | Tu Nombre",
+    default: "David Lucano | Backend Developer",
+    template: "%s | David Lucano",
   },
   description:
     "Backend Developer especializado en Node.js, PostgreSQL y arquitecturas escalables. Portfolio de proyectos y experiencia profesional.",
@@ -31,12 +31,12 @@ export const metadata: Metadata = {
     "PostgreSQL",
     "API REST",
   ],
-  authors: [{ name: "Tu Nombre" }],
+  authors: [{ name: "David Lucano" }],
   openGraph: {
     type: "website",
     locale: "es_ES",
     url: "https://tuportfolio.com",
-    siteName: "Tu Nombre | Portfolio",
+    siteName: "David Lucano | Portfolio",
   },
 };
 

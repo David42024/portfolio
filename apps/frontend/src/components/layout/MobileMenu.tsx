@@ -164,7 +164,7 @@ export function MobileMenu({ isOpen, onClose, navItems }: MobileMenuProps) {
               </svg>
             </a>
             <a
-              href="mailto:tu@email.com"
+              href="mailto:thelucano37@gmail.com"
               className="p-2 rounded-lg hover:bg-muted transition-colors text-muted-foreground hover:text-foreground"
               aria-label="Email"
             >
