@@ -3,7 +3,7 @@ FROM node:20-alpine
 WORKDIR /app/apps/backend
 
 COPY apps/backend/package*.json ./
-RUN npm ci
+RUN npm install
 
 COPY apps/backend/prisma ./prisma
 RUN npx prisma generate
