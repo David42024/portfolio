@@ -29,13 +29,13 @@ services:
         value: ${APP_URL}
       - key: DATABASE_URL
         scope: RUN_TIME
-        type: SECRET
+        #type: SECRET
       - key: REDIS_URL
         scope: RUN_TIME
-        type: SECRET
+        #type: SECRET
       - key: REVALIDATE_SECRET
         scope: RUN_TIME
-        type: SECRET
+        #type: SECRET
     
     routes:
       - path: /api
@@ -61,7 +61,7 @@ services:
       - key: NODE_ENV
         value: production
       - key: NEXT_PUBLIC_API_URL
-        value: ${APP_URL}/api/v1
+        value: ${APP_URL}/api
     
     routes:
       - path: /
