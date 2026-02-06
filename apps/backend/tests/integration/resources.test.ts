@@ -32,25 +32,31 @@ describe("Certificates API ", () => {
             where: { title: { startsWith: "Test" } },
         });
 
-        // 2. CREAR una skill de prueba explícitamente (no usar findFirst)
-        // Usamos upsert o create para asegurar que tengamos un ID válido
-        const skill = await prisma.skill.create({
-            data: {
-                name: "Test Skill2",
-                level: 5,
-                icon: "test-icon",
-                // Si tienes categorías, asegúrate de que exista una o crea una aquí
-                category: {
-                    create: { name: "Test Category" }
-                }
-            }
+        // 2. CREAR una skill de prueba explícitamente
+        // Primero intentamos buscar la skill, si no existe la creamos
+        let skill = await prisma.skill.findFirst({
+            where: { name: "Test Skill2" }
         });
+
+        if (!skill) {
+            skill = await prisma.skill.create({
+                data: {
+                    name: "Test Skill2",
+                    level: 5,
+                    icon: "test-icon",
+                    // Si tienes categorías, asegúrate de que exista una o crea una aquí
+                    category: {
+                        create: { name: "Test Category" }
+                    }
+                }
+            });
+        }
         
         // 3. Crear el certificado vinculado a esa nueva skill
         const certificateData = {
             title: "Test Certificate",
             issuer: "Test Issuer",
-            issueDate: new Date("2023-01-01"),
+            issueDate: new Date("2023-01-01").toISOString(),
             credentialUrl: "https://credentials.example.com/test",
             imageUrl: "https://example.com/certificate/test",
             skills: { 
