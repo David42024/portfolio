@@ -1,4 +1,5 @@
-name: Build & Deploy to DigitalOcean
+# .github/workflows/ci-cd.yml
+name: CI/CD Pipeline
 
 on:
   push:
@@ -6,17 +7,21 @@ on:
   pull_request:
     branches: [main]
 
-jobs:
-  test-and-build:
-    runs-on: ubuntu-latest
+env:
+  NODE_VERSION: "22"
+  REGISTRY: ghcr.io
+  BACKEND_IMAGE: ghcr.io/${{ github.repository }}/backend
+  FRONTEND_IMAGE: ghcr.io/${{ github.repository }}/frontend
 
-    permissions:     
-      contents: read
-      packages: write
+# ==================== JOB 1: TESTS ====================
+jobs:
+  test:
+    name: 🧪 Test
+    runs-on: ubuntu-latest
 
     services:
       postgres:
-        image: postgres:16
+        image: postgres:16-alpine
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
@@ -29,76 +34,110 @@ jobs:
           --health-timeout=5s
           --health-retries=5
 
-    env:
-      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/portfolio_test
-      NODE_ENV: test
-
     steps:
-      - name: Checkout repository
+      - name: 📥 Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: 📦 Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: ${{ env.NODE_VERSION }}
           cache: npm
 
-      - name: Install dependencies
+      - name: 📥 Install dependencies
         run: npm ci
 
-      # 🔍 Verificar versiones de Prisma
-      - name: Check Prisma versions
-        run: |
-          echo "Prisma CLI version:"
-          npx prisma --version
-          echo "Prisma Client version:"
-          cat package.json | grep -A 1 "prisma"
+      - name: 🔍 Lint
+        run: npm run lint --if-present
 
-      # ✅ Generar Prisma Client con verificación
-      - name: Generate Prisma Client
+      - name: 🔍 Type check
         working-directory: apps/backend
-        run: |
-          npx prisma generate
-          echo "Prisma Client generation completed"
-          ls -la node_modules/.prisma/client/ || echo ".prisma/client not found"
+        run: npm run type-check --if-present
 
-      # 🧪 Ejecutar migraciones y tests
-      - name: Run Prisma Migrations and Tests
+      - name: 🗄️ Generate Prisma Client
         working-directory: apps/backend
-        run: |
-          npx prisma db push --force-reset
-          npm test
+        run: npx prisma generate
+
+      - name: 🗄️ Push DB Schema
+        working-directory: apps/backend
+        run: npx prisma db push --force-reset
         env:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/portfolio_test
 
-      # 🐳 Login en GitHub Container Registry
-      - name: Log in to GHCR
-        if: github.event_name == 'push'
+      - name: 🧪 Run Tests
+        working-directory: apps/backend
+        run: npm test
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/portfolio_test
+          NODE_ENV: test
+
+  # ==================== JOB 2: BUILD ====================
+  build:
+    name: 🐳 Build & Push
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🐳 Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: 🔐 Login to GHCR
         uses: docker/login-action@v3
         with:
-          registry: ghcr.io
+          registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # 📦 Build y Push de las imágenes
-      - name: Build and push Docker images
-        if: github.event_name == 'push'
-        run: |
-          # Backend
-          docker build -t ghcr.io/david42024/portfolio/backend:latest -f apps/backend/Dockerfile .
-          docker push ghcr.io/david42024/portfolio/backend:latest
-          
-          # Frontend
-          docker build -t ghcr.io/david42024/portfolio/frontend:latest -f apps/frontend/Dockerfile .
-          docker push ghcr.io/david42024/portfolio/frontend:latest
+      - name: 🏗️ Build & Push Backend
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./apps/backend/Dockerfile
+          push: true
+          tags: |
+            ${{ env.BACKEND_IMAGE }}:latest
+            ${{ env.BACKEND_IMAGE }}:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
-      # 🚀 DEPLOY
-      - name: Install doctl
-        if: github.event_name == 'push'
+      - name: 🏗️ Build & Push Frontend
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./apps/frontend/Dockerfile
+          push: true
+          tags: |
+            ${{ env.FRONTEND_IMAGE }}:latest
+            ${{ env.FRONTEND_IMAGE }}:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  # ==================== JOB 3: DEPLOY ====================
+  deploy:
+    name: 🚀 Deploy
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🔧 Install doctl
         uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
-      - name: Update DigitalOcean App
-        if: github.event_name == 'push'
+      - name: 🚀 Deploy to DigitalOcean
         run: doctl apps update ${{ secrets.DIGITALOCEAN_APP_ID }} --spec .do/app.yml
+
+      - name: ✅ Deploy complete
+        run: echo "🎉 Deploy completado exitosamente"

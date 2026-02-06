@@ -16,8 +16,9 @@ services:
     
     health_check:
       http_path: /api/v1/health
-      initial_delay_seconds: 15 # Un poco más de margen para el arranque
+      initial_delay_seconds: 20
       period_seconds: 30
+      timeout_seconds: 10
     
     envs:
       - key: NODE_ENV
@@ -26,6 +27,15 @@ services:
         value: "4000"
       - key: CORS_ORIGIN
         value: ${APP_URL}
+      - key: DATABASE_URL
+        scope: RUN_TIME
+        type: SECRET
+      - key: REDIS_URL
+        scope: RUN_TIME
+        type: SECRET
+      - key: REVALIDATE_SECRET
+        scope: RUN_TIME
+        type: SECRET
     
     routes:
       - path: /api
@@ -44,7 +54,8 @@ services:
     
     health_check:
       http_path: /
-      initial_delay_seconds: 15
+      initial_delay_seconds: 20
+      period_seconds: 30
     
     envs:
       - key: NODE_ENV
