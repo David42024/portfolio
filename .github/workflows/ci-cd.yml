@@ -69,7 +69,7 @@ jobs:
         working-directory: apps/backend
         run: npm test
         env:
-          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/portfolio_test
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/portfolio_test?sslmode=disable
           NODE_ENV: test
 
   # ==================== JOB 2: BUILD ====================
