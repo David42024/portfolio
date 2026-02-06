@@ -12,7 +12,7 @@ RUN npm install
 COPY . .
 
 # 3️⃣ Prisma client
-RUN npx prisma generate
+RUN npx prisma generate --schema=apps/backend/prisma/schema.prisma
 
 # 4️⃣ Build TS
 RUN npm run build
