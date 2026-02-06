@@ -1,21 +1,25 @@
 FROM node:20-alpine
 
-WORKDIR /app/apps/backend
+WORKDIR /app
 
-COPY apps/backend/package*.json ./
+# 1️⃣ Dependencias (mejor cache)
+COPY package*.json ./
+COPY apps/backend/package*.json ./apps/backend/
+
 RUN npm install
 
-COPY apps/backend/prisma ./prisma
+# 2️⃣ Código completo
+COPY . .
+
+# 3️⃣ Prisma client
 RUN npx prisma generate
 
-# 👇 Copia TODO, no solo src
-COPY apps/backend ./
-
+# 4️⃣ Build TS
 RUN npm run build
 
 ENV NODE_ENV=production
-ENV PORT=4000
 
 EXPOSE 4000
 
-CMD ["node", "dist/src/index.js"]
+# 5️⃣ Entry point correcto
+CMD ["node", "apps/backend/dist/src/index.js"]
