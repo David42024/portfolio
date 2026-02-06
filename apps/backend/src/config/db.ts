@@ -1,11 +1,21 @@
-import { PrismaPg } from '@prisma/adapter-pg'
-import { PrismaClient } from '../../prisma/generated/client'
-import fs from 'fs'
+import { PrismaClient } from "@prisma/client";
+import { PrismaPg } from "@prisma/adapter-pg";
+import fs from "fs";
+
+const ssl =
+  process.env.NODE_ENV === "production" &&
+  process.env.DATABASE_SSL_CA_PATH &&
+  fs.existsSync(process.env.DATABASE_SSL_CA_PATH)
+    ? {
+        ca: fs.readFileSync(process.env.DATABASE_SSL_CA_PATH),
+      }
+    : false;
 
 const adapter = new PrismaPg({
   connectionString: process.env.DATABASE_URL,
-  ssl: {
-    ca: fs.readFileSync("../../certs/ca.crt")
-  }
-})
-export const prisma = new PrismaClient({ adapter })
+  ssl,
+});
+
+export const prisma = new PrismaClient({
+  adapter,
+});
