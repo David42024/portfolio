@@ -12,6 +12,7 @@ env:
   REGISTRY: ghcr.io
   BACKEND_IMAGE: ghcr.io/${{ github.repository }}/backend
   FRONTEND_IMAGE: ghcr.io/${{ github.repository }}/frontend
+  DATABASE_URL: postgresql://postgres:postgres@localhost:5432/portfolio_test
 
 # ==================== JOB 1: TESTS ====================
 jobs:
