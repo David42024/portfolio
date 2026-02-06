@@ -39,6 +39,7 @@ services:
     
     routes:
       - path: /api
+        preserve_path_prefix: true 
 
   # ==================== FRONTEND ====================
   - name: frontend
