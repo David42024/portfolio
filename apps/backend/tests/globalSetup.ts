@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { prisma } from "../src/config/db.js";
+import { prisma } from "../src/config/db";
 
 export default async function () {
   console.log("🌍 Setup global de tests");

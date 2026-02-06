@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll, afterAll } from "vitest";
-import { prisma } from "../../src/config/db.js";
+import { prisma } from "../../src/config/db";
 import request from "supertest";
-import app from "../../src/app.js";
+import app from "../../src/app";
 
 
 interface Skill {
@@ -36,7 +36,7 @@ describe("Certificates API ", () => {
         // Usamos upsert o create para asegurar que tengamos un ID válido
         const skill = await prisma.skill.create({
             data: {
-                name: "Test Skill",
+                name: "Test Skill2",
                 level: 5,
                 icon: "test-icon",
                 // Si tienes categorías, asegúrate de que exista una o crea una aquí
