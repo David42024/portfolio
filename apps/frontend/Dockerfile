@@ -14,8 +14,8 @@ RUN npm install
 COPY apps/frontend ./
 
 # Variable de entorno para build
-ARG NEXT_PUBLIC_API_URL
-ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+ARG NEXT_PUBLIC_APP_URL
+ENV NEXT_PUBLIC_APP_URL=$NEXT_PUBLIC_APP_URL
 
 # Build
 RUN npm run build
