@@ -130,7 +130,7 @@ export function MobileMenu({ isOpen, onClose, navItems }: MobileMenuProps) {
           {/* Social Links */}
           <div className="flex items-center justify-center gap-4 mt-4 pt-4 border-t border-border">
             <a
-              href="https://github.com/tuusuario"
+              href="https://github.com/David42024"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 rounded-lg hover:bg-muted transition-colors text-muted-foreground hover:text-foreground"
@@ -147,7 +147,7 @@ export function MobileMenu({ isOpen, onClose, navItems }: MobileMenuProps) {
               </svg>
             </a>
             <a
-              href="https://linkedin.com/in/tuusuario"
+              href="https://www.linkedin.com/in/david-adrian-lucano-nieves-96934b317/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 rounded-lg hover:bg-muted transition-colors text-muted-foreground hover:text-foreground"

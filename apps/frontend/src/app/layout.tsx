@@ -32,6 +32,11 @@ export const metadata: Metadata = {
     "API REST",
   ],
   authors: [{ name: "David Lucano" }],
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
   openGraph: {
     type: "website",
     locale: "es_ES",

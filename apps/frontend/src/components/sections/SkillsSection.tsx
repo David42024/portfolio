@@ -1,4 +1,5 @@
 import { api, SkillCategory } from "@/services/api";
+import Image from "next/image";
 
 async function getSkillsCategories(): Promise<SkillCategory[]> {
   try {
@@ -71,9 +72,16 @@ function SkillCategoryCard({
       <div className="space-y-4">
         {category.skills.map((skill) => (
           <div key={skill.id}>
-            <div className="flex items-center justify-between mb-1.5">
-              <span className="text-sm font-medium">{skill.name}</span>
-              <span className="text-xs text-muted-foreground">
+            <div className="flex items-center gap-2 mb-1.5">
+              <Image 
+                src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${skill.icon}/${skill.icon}-original.svg`}
+                alt={skill.name}
+                width={16}
+                height={16}
+                className={`shrink-0 ${skill.icon === "express" ? "dark:filter dark:invert" : ""}`}
+              />
+              <span className="text-sm font-medium truncate">{skill.name}</span>
+              <span className="ml-auto text-xs text-muted-foreground">
                 {skill.level}%
               </span>
             </div>

@@ -21,6 +21,13 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
+  const handleHomeClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (pathname === "/") {
+      event.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -50,6 +57,7 @@ export function Header() {
             <Link
               href="/"
               className="group flex items-center gap-2 focus-ring rounded-lg"
+              onClick={ handleHomeClick }
             >
               <div className="relative">
                 <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20 group-hover:border-primary/50 transition-colors">
@@ -81,6 +89,7 @@ export function Header() {
                           ? "text-primary bg-primary/10"
                           : "text-muted-foreground hover:text-foreground hover:bg-muted"
                       }`}
+                    onClick={item.href === "/" ? handleHomeClick : undefined}
                   >
                     {item.label}
                   </Link>

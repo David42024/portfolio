@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { api, Project } from "@/services/api";
 import Image from "next/image";
+import { getProjectScreenshot } from "@/helpers/utils";
 
 async function getProjects(): Promise<Project[]> {
   try {
@@ -72,6 +73,11 @@ export async function ProjectsSection() {
 }
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
+  
+  const imageUrl = project.liveUrl
+    ? getProjectScreenshot(project.liveUrl)
+    : project.imageUrl;
+  
   return (
     <article
       className="group relative rounded-xl border border-border bg-card overflow-hidden card-hover animate-fade-in"
@@ -79,13 +85,14 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
     >
       {/* Image */}
       <div className="aspect-video bg-muted relative overflow-hidden">
-        {project.imageUrl ? (
+        {imageUrl ? (
           <Image
-            src={project.imageUrl}
+            src={imageUrl}
             alt={project.title}
             fill
             sizes="(min-width: 768px) 50vw, 100vw"
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            loading="lazy"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/10 to-primary/5">
@@ -112,8 +119,15 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           {project.technologies.slice(0, 4).map((tech) => (
             <span
               key={tech.id}
-              className="px-2 py-1 text-xs rounded-md bg-muted text-muted-foreground"
+              className="inline-flex items-center gap-1.5 px-2 py-1 text-xs rounded-md bg-muted text-muted-foreground"
             >
+              <Image 
+                src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${tech.icon}/${tech.icon}-original.svg`}
+                alt={tech.name}
+                width={16}
+                height={16}
+                className={`shrink-0 ${tech.icon === "express" ? "dark:filter dark:invert" : ""}`}
+              />
               {tech.name}
             </span>
           ))}
