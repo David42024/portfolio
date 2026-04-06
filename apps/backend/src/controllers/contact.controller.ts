@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { z } from "zod";
 import { contactRepository } from "../repositories/contact.repository.js";
 import { AppError } from "../utils/AppError.js";
+import { emailService } from "../services/email.service.js";
 
 // Schema de validación
 const contactSchema = z.object({
@@ -29,7 +30,15 @@ export const create = async (
     // Crear mensaje
     const contact = await contactRepository.create(validatedData);
 
-    // TODO: Enviar email de notificación
+    // El envio de emails no debe romper el guardado del contacto
+    try {
+      // Notificar al admin
+      await emailService.sendContactNotification(validatedData);
+      // Auto-respuesta al usuario
+      await emailService.sendContactConfirmation(validatedData);
+    } catch (emailError) {
+      console.error("Error sending contact emails:", emailError);
+    }
 
     res.status(201).json({
       success: true,

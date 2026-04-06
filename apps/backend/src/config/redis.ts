@@ -28,6 +28,10 @@ export async function getRedisClient(): Promise<RedisClientType | null >{
     return redisClient;
 }
 
+export function getRedisClientSync(): RedisClientType | null {
+    return redisClient;
+}
+
 export async function disconnectRedis(): Promise<void> {
     if (redisClient) {
         await redisClient.disconnect();

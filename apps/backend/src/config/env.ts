@@ -19,6 +19,11 @@ const envSchema = z.object({
   SMTP_USER: z.string().optional(),
   SMTP_PASS: z.string().optional(),
   CONTACT_EMAIL: z.string().email().optional(),
+  RESEND_API_KEY: z.string().optional(),
+  CONTACT_EMAIL_FROM: z.string().optional(),
+  // Rate limiting
+  CONTACT_RATE_LIMIT_REQUESTS: z.string().optional().default("5"),
+  CONTACT_RATE_LIMIT_WINDOW: z.string().optional().default("3600000"), // 1 hora
 });
 
 const parsed = envSchema.safeParse(process.env);
