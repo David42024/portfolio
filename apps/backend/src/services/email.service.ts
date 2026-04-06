@@ -64,13 +64,17 @@ export const emailService = {
 
     const from = env.CONTACT_EMAIL_FROM || "Portfolio <onboarding@resend.dev>";
 
-    await resend.emails.send({
+    const { error } = await resend.emails.send({
       from,
       to: env.CONTACT_EMAIL,
       subject: `Nuevo contacto de ${payload.name}`,
       html: buildContactEmailHtml(payload),
       replyTo: payload.email,
     });
+
+    if (error) {
+      throw new Error(error.message || "Error sending contact notification email");
+    }
 
     return true;
   },
@@ -82,12 +86,16 @@ export const emailService = {
 
     const from = env.CONTACT_EMAIL_FROM || "Portfolio <onboarding@resend.dev>";
 
-    await resend.emails.send({
+    const { error } = await resend.emails.send({
       from,
       to: payload.email,
       subject: "Hemos recibido tu mensaje ✓",
       html: buildConfirmationEmailHtml(payload.name),
     });
+
+    if (error) {
+      throw new Error(error.message || "Error sending contact confirmation email");
+    }
 
     return true;
   },
