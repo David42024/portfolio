@@ -2,17 +2,19 @@ import rateLimit from "express-rate-limit";
 import RedisStore from "rate-limit-redis";
 import { getRedisClientSync } from "../config/redis.js";
 import { env } from "../config/env.js";
+import { Request, Response, NextFunction } from "express";
 
 const CONTACT_LIMIT = parseInt(env.CONTACT_RATE_LIMIT_REQUESTS || "5", 10);
 const CONTACT_WINDOW = parseInt(env.CONTACT_RATE_LIMIT_WINDOW || "3600000", 10);
 
 // Factory para crear el middleware con manejo dinámico de Redis
-export const contactRateLimit = (req: any, res: any, next: any) => {
+export const contactRateLimit = (req: Request, res: Response, next: NextFunction): void => {
   const redisClient = getRedisClientSync();
 
   if (!redisClient) {
     // Si Redis no está disponible, continuar sin rate limit
-    return next();
+    next();
+    return;
   }
 
   const limiter = rateLimit({
@@ -26,7 +28,7 @@ export const contactRateLimit = (req: any, res: any, next: any) => {
     statusCode: 429,
     standardHeaders: true,
     legacyHeaders: false,
-    skip: (req) => {
+    skip: (_req) => {
       return env.NODE_ENV === "test";
     },
     keyGenerator: (req) => {
@@ -38,5 +40,5 @@ export const contactRateLimit = (req: any, res: any, next: any) => {
     },
   });
 
-  return limiter(req, res, next);
+  limiter(req, res, next);
 };
