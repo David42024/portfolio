@@ -39,6 +39,18 @@ services:
         scope: RUN_TIME
         type: SECRET
         value: ${REVALIDATE_SECRET}
+      - key: RESEND_API_KEY
+        scope: RUN_TIME
+        type: SECRET
+        value: ${RESEND_API_KEY}
+      - key: CONTACT_EMAIL
+        scope: RUN_TIME
+        type: SECRET
+        value: ${CONTACT_EMAIL}
+      - key: CONTACT_EMAIL_FROM
+        scope: RUN_TIME
+        type: SECRET
+        value: ${CONTACT_EMAIL_FROM}
     
     routes:
       - path: /api

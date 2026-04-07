@@ -3,6 +3,10 @@ import { api, Project } from "@/services/api";
 import Image from "next/image";
 import { getProjectScreenshot } from "@/helpers/utils";
 
+
+const ENABLE_PROJECT_DETAIL = false;
+
+
 async function getProjects(): Promise<Project[]> {
   try {
     const response = await api.getFeaturedProjects();
@@ -184,11 +188,12 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               Demo
             </a>
           )}
-          <Link
-            href={`/projects/${project.slug}`}
-            className="ml-auto flex items-center gap-1.5 text-sm text-primary hover:underline"
-          >
-            Ver más
+          {ENABLE_PROJECT_DETAIL && (
+            <Link
+              href={`/projects/${project.slug}`}
+              className="ml-auto flex items-center gap-1.5 text-sm text-primary hover:underline"
+            >
+              Ver más
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="14"
@@ -204,6 +209,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               <path d="m12 5 7 7-7 7" />
             </svg>
           </Link>
+          )}
         </div>
       </div>
     </article>

@@ -119,7 +119,7 @@ jobs:
             ghcr.io/david42024/portfolio/frontend:latest
             ghcr.io/david42024/portfolio/frontend:${{ github.sha }}
           build-args: |
-            NEXT_PUBLIC_API_URL=https://my-portfolio-exfg4.ondigitalocean.app/api/v1
+            NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -144,6 +144,9 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           REDIS_URL: ${{ secrets.REDIS_URL }}
           REVALIDATE_SECRET: ${{ secrets.REVALIDATE_SECRET }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          CONTACT_EMAIL: ${{ secrets.CONTACT_EMAIL }}
+          CONTACT_EMAIL_FROM: ${{ secrets.CONTACT_EMAIL_FROM }}
         run: |
           sudo apt-get update
           sudo apt-get install -y gettext
