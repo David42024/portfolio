@@ -1,5 +1,6 @@
 import { api, SkillCategory } from "@/services/api";
 import Image from "next/image";
+import { deviconUrl } from "@/helpers/devicon";
 
 async function getSkillsCategories(): Promise<SkillCategory[]> {
   try {
@@ -73,13 +74,15 @@ function SkillCategoryCard({
         {category.skills.map((skill) => (
           <div key={skill.id}>
             <div className="flex items-center gap-2 mb-1.5">
-              <Image 
-                src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${skill.icon}/${skill.icon}-original.svg`}
-                alt={skill.name}
-                width={16}
-                height={16}
-                className={`shrink-0 ${skill.icon === "express" ? "dark:filter dark:invert" : ""}`}
-              />
+              {deviconUrl(skill.icon) && (
+                <Image 
+                  src={deviconUrl(skill.icon)!}
+                  alt={skill.name}
+                  width={16}
+                  height={16}
+                  className={`shrink-0 ${skill.icon === "express" ? "dark:filter dark:invert" : ""}`}
+                />
+              )}
               <span className="text-sm font-medium truncate">{skill.name}</span>
               <span className="ml-auto text-xs text-muted-foreground">
                 {skill.level}%

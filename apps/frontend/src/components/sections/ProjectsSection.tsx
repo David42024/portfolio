@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { api, Project } from "@/services/api";
 import Image from "next/image";
-import { getProjectScreenshot } from "@/helpers/utils";
+import { deviconUrl } from "@/helpers/devicon";
 
 
 const ENABLE_PROJECT_DETAIL = false;
@@ -78,10 +78,8 @@ export async function ProjectsSection() {
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   
-  const imageUrl = project.liveUrl
-    ? getProjectScreenshot(project.liveUrl)
-    : project.imageUrl;
-  
+  const imageUrl = project.imageUrl;
+
   return (
     <article
       className="group relative rounded-xl border border-border bg-card overflow-hidden card-hover animate-fade-in"
@@ -125,13 +123,15 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               key={tech.id}
               className="inline-flex items-center gap-1.5 px-2 py-1 text-xs rounded-md bg-muted text-muted-foreground"
             >
-              <Image 
-                src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${tech.icon}/${tech.icon}-original.svg`}
-                alt={tech.name}
-                width={16}
-                height={16}
-                className={`shrink-0 ${tech.icon === "express" ? "dark:filter dark:invert" : ""}`}
-              />
+              {deviconUrl(tech.icon) && (
+                <Image 
+                  src={deviconUrl(tech.icon)!}
+                  alt={tech.name}
+                  width={16}
+                  height={16}
+                  className={`shrink-0 ${tech.icon === "express" ? "dark:filter dark:invert" : ""}`}
+                />
+              )}
               {tech.name}
             </span>
           ))}

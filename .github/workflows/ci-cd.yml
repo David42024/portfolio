@@ -123,12 +123,12 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-  # ==================== JOB 3: DEPLOY ====================
+  # ==================== JOB 3: DEPLOY (DESACTIVADO) ====================
   deploy:
-    name: 🚀 Deploy
+    name: 🚀 Deploy (inactivo)
     runs-on: ubuntu-latest
     needs: build
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: false # Desactivado: la app migra a Vercel. Se conserva como referencia.
 
     steps:
       - name: 📥 Checkout

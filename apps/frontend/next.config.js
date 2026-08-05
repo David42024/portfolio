@@ -5,7 +5,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "api.microlink.io",
+        hostname: "res.cloudinary.com",
       },
       {
         protocol: "https",

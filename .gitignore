@@ -1,42 +1,63 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-node_modules
+# ====== Dependencias ======
+node_modules/
 .pnp
 .pnp.js
+.yarn/cache
+.yarn/unplugged
 
-# testing
-coverage
+# ====== Testing ======
+coverage/
 
-# next.js
-.next
-out
+# ====== Next.js ======
+.next/
+out/
 
-# production
-build
-dist
+# ====== Producción / build ======
+build/
+dist/
 
-# misc
-.DS_Store
-*.pem
+# ====== Turborepo ======
+.turbo/
 
-# debug
+# ====== TypeScript ======
+*.tsbuildinfo
+next-env.d.ts
+
+# ====== Variables de entorno (NUNCA subir secretos) ======
+.env
+.env.local
+.env.*
+!.env.example
+
+# ====== Logs ======
+logs/
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# local env files
-.env*.local
-.env
+# ====== Sistema operativo ======
+.DS_Store
+Thumbs.db
 
-# vercel
-.vercel
+# ====== Editor / IDE ======
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# ====== Vercel ======
+.vercel/
 
-# turbo
-.turbo
+# ====== Certificados / backups locales / utilidades ======
+*.pem
+.certs/
+backups/
 
-.certs
+# ====== Bases de datos locales / SQLite ======
+*.db
+*.sqlite

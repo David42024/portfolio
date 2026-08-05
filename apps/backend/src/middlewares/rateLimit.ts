@@ -1,4 +1,4 @@
-import rateLimit from "express-rate-limit";
+import rateLimit, { ipKeyGenerator } from "express-rate-limit";
 import { env } from "../config/env.js";
 
 const CONTACT_LIMIT = parseInt(env.CONTACT_RATE_LIMIT_REQUESTS || "5", 10);
@@ -16,10 +16,10 @@ export const contactRateLimit = rateLimit({
     return env.NODE_ENV === "test";
   },
   keyGenerator: (req) => {
-    const ip =
+    const rawIp =
       (req.headers["x-forwarded-for"] as string)?.split(",")[0].trim() ||
       req.ip ||
       "unknown";
-    return ip;
+    return ipKeyGenerator(rawIp);
   },
 });

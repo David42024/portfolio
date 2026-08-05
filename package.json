@@ -21,7 +21,8 @@
     "db:reset": "turbo run db:reset",
     "db:seed": "turbo run db:seed",
     "db:push": "turbo run db:push",
-    "db:migrate:prod": "turbo run db:migrate:prod"
+    "db:migrate:prod": "turbo run db:migrate:prod",
+    "db:backup": "turbo run db:backup"
   },
   "devDependencies": {
     "@types/morgan": "^1.9.10",
