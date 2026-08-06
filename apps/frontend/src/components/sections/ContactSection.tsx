@@ -57,7 +57,9 @@ export function ContactSection() {
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
             {/* Contact Info */}
             <div className="lg:col-span-2 space-y-6">
-              <div className="p-4 rounded-lg border border-border bg-card">
+              {/* CAMBIO: tarjetas laterales rebajadas (bg y borde más tenues)
+                  para que el CTA sólido sea claramente el elemento primario. */}
+              <div className="p-4 rounded-lg border border-border/60 bg-card/60 backdrop-blur-sm">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
                     <svg
@@ -88,7 +90,7 @@ export function ContactSection() {
                 </div>
               </div>
 
-              <div className="p-4 rounded-lg border border-border bg-card">
+              <div className="p-4 rounded-lg border border-border/60 bg-card/60 backdrop-blur-sm">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
                     <svg
@@ -114,7 +116,7 @@ export function ContactSection() {
                 </div>
               </div>
 
-              <div className="p-4 rounded-lg border border-border bg-card">
+              <div className="p-4 rounded-lg border border-border/60 bg-card/60 backdrop-blur-sm">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center">
                     <span className="relative flex h-3 w-3">
@@ -142,17 +144,34 @@ export function ContactSection() {
                   >
                     Nombre
                   </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    minLength={2}
-                    className="w-full px-4 py-3 rounded-lg border border-border bg-card focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
-                    placeholder="Tu nombre"
-                  />
+                  <div className="relative group">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-colors pointer-events-none"
+                    >
+                      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                      <circle cx="12" cy="7" r="4" />
+                    </svg>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      minLength={2}
+                      className="w-full pl-11 pr-4 py-3 rounded-lg border border-border bg-card focus:outline-none focus:ring-4 focus:ring-primary/20 focus:border-primary focus:bg-card hover:border-primary/40 transition-all duration-200"
+                      placeholder="Tu nombre"
+                    />
+                  </div>
                 </div>
 
                 <div>
@@ -162,16 +181,33 @@ export function ContactSection() {
                   >
                     Email
                   </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 rounded-lg border border-border bg-card focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
-                    placeholder="tu@email.com"
-                  />
+                  <div className="relative group">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-colors pointer-events-none"
+                    >
+                      <rect width="20" height="16" x="2" y="4" rx="2" />
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                    </svg>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full pl-11 pr-4 py-3 rounded-lg border border-border bg-card focus:outline-none focus:ring-4 focus:ring-primary/20 focus:border-primary focus:bg-card hover:border-primary/40 transition-all duration-200"
+                      placeholder="tu@email.com"
+                    />
+                  </div>
                 </div>
 
                 <div>
@@ -181,17 +217,33 @@ export function ContactSection() {
                   >
                     Mensaje
                   </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    minLength={10}
-                    rows={5}
-                    className="w-full px-4 py-3 rounded-lg border border-border bg-card focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors resize-none"
-                    placeholder="Cuéntame sobre tu proyecto..."
-                  />
+                  <div className="relative group">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="absolute left-3.5 top-5 text-muted-foreground group-focus-within:text-primary transition-colors pointer-events-none"
+                    >
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                    </svg>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      minLength={10}
+                      rows={5}
+                      className="w-full pl-11 pr-4 py-3 rounded-lg border border-border bg-card focus:outline-none focus:ring-4 focus:ring-primary/20 focus:border-primary focus:bg-card hover:border-primary/40 transition-all duration-200 resize-none"
+                      placeholder="Cuéntame sobre tu proyecto..."
+                    />
+                  </div>
                 </div>
 
                 {/* Status Messages */}
@@ -210,7 +262,7 @@ export function ContactSection() {
                 <button
                   type="submit"
                   disabled={status === "loading"}
-                  className="w-full px-8 py-4 rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-all focus-ring disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full px-8 py-4 rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary/90 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/20 transition-all duration-200 glow-hover focus-ring disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-primary disabled:hover:translate-y-0 disabled:hover:shadow-none active:scale-[0.99] flex items-center justify-center gap-2"
                 >
                   {status === "loading" ? (
                     <>

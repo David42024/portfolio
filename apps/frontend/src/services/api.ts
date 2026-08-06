@@ -51,7 +51,7 @@ class ApiClient {
   }
 
   async getProjectBySlug(slug: string) {
-    return this.request<Project>(`/projects/${slug}`);
+    return this.request<Project>(`/projects/slug/${slug}`);
   }
 
   // ==================== SKILLS ====================

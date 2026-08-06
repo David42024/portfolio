@@ -19,6 +19,7 @@ const navItems = [
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
   const pathname = usePathname();
 
   const handleHomeClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
@@ -35,6 +36,37 @@ export function Header() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // CAMBIO: scroll-spy para resaltar la sección activa del nav en lugar de
+  // depender solo de la ruta (que nunca marcaba las secciones por hash).
+  useEffect(() => {
+    const sectionIds = [
+      "hero",
+      "projects",
+      "skills",
+      "experience",
+      "certificates",
+      "contact",
+    ];
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   // Cerrar menú móvil al cambiar de ruta
@@ -79,22 +111,36 @@ export function Header() {
 
             {/* Desktop Navigation */}
             <ul className="hidden lg:flex items-center gap-1">
-              {navItems.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors focus-ring
-                      ${
-                        pathname === item.href
-                          ? "text-primary bg-primary/10"
-                          : "text-muted-foreground hover:text-foreground hover:bg-muted"
+              {navItems.map((item) => {
+                const itemId = item.href === "/" ? "hero" : item.href.slice(2);
+                const isActive = activeSection === itemId;
+                return (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      aria-current={isActive ? "true" : undefined}
+                      className={`group relative px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 focus-ring ${
+                        isActive
+                          ? "text-primary"
+                          : "text-muted-foreground hover:text-foreground"
                       }`}
-                    onClick={item.href === "/" ? handleHomeClick : undefined}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
+                      onClick={
+                        item.href === "/" ? handleHomeClick : undefined
+                      }
+                    >
+                      {item.label}
+                      {/* Línea animada: aparece en hover y es persistente en activo */}
+                      <span
+                        className={`absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-primary transition-transform duration-300 origin-left ${
+                          isActive
+                            ? "scale-x-100"
+                            : "scale-x-0 group-hover:scale-x-100"
+                        }`}
+                      />
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
 
             {/* Actions */}

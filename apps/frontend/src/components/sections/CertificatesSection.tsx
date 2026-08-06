@@ -1,5 +1,6 @@
 import { api, Certificate } from "@/services/api";
 import Image from "next/image";
+import { EmptyState } from "@/components/ui/EmptyState";
 
 async function getCertificates(): Promise<Certificate[]> {
   try {
@@ -54,9 +55,26 @@ export async function CertificatesSection() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-12 text-muted-foreground">
-            <p>No hay certificados disponibles.</p>
-          </div>
+          <EmptyState
+            icon={
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="12" cy="8" r="6" />
+                <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+              </svg>
+            }
+            title="No hay certificados disponibles."
+            description="Cuando agregues certificaciones, aparecerán aquí."
+          />
         )}
       </div>
     </section>

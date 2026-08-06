@@ -196,6 +196,19 @@ html {
   }
 }
 
+/* Indicador de scroll: rebote suave con fade (micro-interacción, 1600ms loop) */
+@keyframes scroll-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+}
+
 .animate-fade-in {
   animation: fade-in 0.6s ease-out forwards;
 }
@@ -214,6 +227,10 @@ html {
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
+}
+
+.animate-scroll-bounce {
+  animation: scroll-bounce 1.6s ease-in-out infinite;
 }
 
 /* Delays para stagger */
@@ -301,6 +318,16 @@ html {
 .focus-ring:focus-visible {
   outline: 2px solid hsl(var(--ring));
   outline-offset: 2px;
+}
+
+/* Máscara radial para fondos decorativos (grid/patrones que se desvanecen) */
+.mask-radial {
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    black 40%,
+    transparent 75%
+  );
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
 }
 
 /* Selection */

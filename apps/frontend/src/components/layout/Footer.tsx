@@ -101,7 +101,7 @@ export function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-lg border border-border hover:border-primary/50 hover:bg-primary/5 transition-all text-muted-foreground hover:text-primary focus-ring"
+                  className="p-2.5 rounded-lg border border-border text-muted-foreground transition-all duration-200 hover:scale-110 hover:-translate-y-0.5 hover:text-primary hover:border-primary/50 hover:bg-primary/10 hover:shadow-md hover:shadow-primary/10 focus-ring"
                   aria-label={social.name}
                 >
                   {social.icon}
@@ -156,14 +156,18 @@ export function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-12 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
+        {/* CAMBIO: separador ligeramente más visible (border/80) para que la
+            línea sobre negro tenga contraste sutil sin dominar. */}
+        <div className="mt-12 pt-8 border-t border-border/80 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
             © {currentYear} David Lucano. Todos los derechos reservados.
           </p>
 
           <p className="text-sm text-muted-foreground flex items-center gap-1.5">
             Hecho con
-            <span className="text-red-500 animate-pulse">❤</span>
+            {/* CAMBIO: corazón en acento verde (en lugar de rojo) para
+                mantener consistencia total con la paleta del sitio. */}
+            <span className="text-primary animate-pulse">❤</span>
             usando
             <span className="text-primary font-medium">Next.js</span>
             &

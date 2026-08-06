@@ -1,10 +1,29 @@
 import Link from "next/link";
+import Image from "next/image";
+import { deviconUrl } from "@/helpers/devicon";
 
-const techStack = ["TypeScript", "Next.js", "Node.js", "PostgreSQL", "Python"];
+// CAMBIO: el listado pasa de texto plano a chips con ícono (Devicon),
+// fondo sutil y borde, manteniendo los mismos nombres de tecnologías.
+const techStack = [
+  { name: "TypeScript", icon: "typescript" },
+  { name: "Next.js", icon: "nextjs" },
+  { name: "Node.js", icon: "nodejs" },
+  { name: "PostgreSQL", icon: "postgresql" },
+  { name: "Python", icon: "python" },
+];
 
 export function HeroSection() {
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+    // id="hero" se usa para el scroll-spy del nav
+    <section
+      id="hero"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
+    >
+      {/* CAMBIO: rellena el vacío vertical con un grid sutil con máscara radial
+          y un gradiente radial suave centrado. */}
+      <div className="absolute inset-0 bg-grid mask-radial opacity-[0.04]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.08),transparent_65%)]" />
+
       {/* Background decorations */}
       <div className="absolute top-1/4 -left-20 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
       <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
@@ -34,35 +53,49 @@ export function HeroSection() {
             especializado en crear APIs robustas y arquitecturas escalables.
           </p>
 
-          {/* Tech stack pills */}
+          {/* Tech stack chips con ícono */}
           <div className="flex flex-wrap items-center justify-center gap-2 mt-8 animate-fade-in delay-300">
-            {techStack.map((tech) => (
-              <span
-                key={tech}
-                className="px-3 py-1.5 rounded-lg bg-muted text-sm font-medium text-muted-foreground"
-              >
-                {tech}
-              </span>
-            ))}
+            {techStack.map((tech) => {
+              const iconUrl = deviconUrl(tech.icon);
+              return (
+                <span
+                  key={tech.name}
+                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-border bg-card/60 backdrop-blur-sm text-sm font-medium text-muted-foreground hover:border-primary/40 hover:text-foreground transition-colors"
+                >
+                  {iconUrl && (
+                    <Image
+                      src={iconUrl}
+                      alt=""
+                      width={16}
+                      height={16}
+                      unoptimized
+                      className="shrink-0"
+                    />
+                  )}
+                  {tech.name}
+                </span>
+              );
+            })}
           </div>
 
-          {/* CTA Buttons */}
+          {/* CAMBIO: jerarquía clara de CTAs — primario relleno, secundario
+              outline con borde en el acento. */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10 animate-fade-in delay-400">
             <Link
               href="#projects"
-              className="w-full sm:w-auto px-8 py-4 rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-all glow-hover focus-ring text-center"
+              className="w-full sm:w-auto px-8 py-4 rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-all duration-200 glow-hover focus-ring text-center"
             >
               Ver Proyectos
             </Link>
             <Link
               href="#contact"
-              className="w-full sm:w-auto px-8 py-4 rounded-lg border border-border bg-card hover:border-primary/50 font-semibold transition-all focus-ring text-center"
+              className="w-full sm:w-auto px-8 py-4 rounded-lg border-2 border-primary/50 text-primary font-semibold hover:bg-primary/10 hover:border-primary transition-all duration-200 focus-ring text-center"
             >
               Contactar
             </Link>
           </div>
 
-          {/* Scroll indicator */}
+          {/* Scroll indicator con animación de rebote + fade */}
           <div className="mt-16 animate-fade-in delay-500">
             <Link
               href="#projects"
@@ -79,7 +112,7 @@ export function HeroSection() {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="animate-bounce"
+                className="animate-scroll-bounce"
               >
                 <path d="m6 9 6 6 6-6" />
               </svg>

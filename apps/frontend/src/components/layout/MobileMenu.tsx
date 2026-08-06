@@ -105,7 +105,7 @@ export function MobileMenu({ isOpen, onClose, navItems }: MobileMenuProps) {
         {/* Footer */}
         <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-border">
           <Link
-            href="/resume.pdf"
+            href="/files/resume.pdf"
             target="_blank"
             className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
           >
