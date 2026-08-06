@@ -80,6 +80,7 @@ function SkillCategoryCard({
                   alt={skill.name}
                   width={16}
                   height={16}
+                  unoptimized
                   className={`shrink-0 ${skill.icon === "express" ? "dark:filter dark:invert" : ""}`}
                 />
               )}

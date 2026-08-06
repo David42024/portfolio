@@ -92,6 +92,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             src={imageUrl}
             alt={project.title}
             fill
+            unoptimized
             sizes="(min-width: 768px) 50vw, 100vw"
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             loading="lazy"
@@ -129,6 +130,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                   alt={tech.name}
                   width={16}
                   height={16}
+                  unoptimized
                   className={`shrink-0 ${tech.icon === "express" ? "dark:filter dark:invert" : ""}`}
                 />
               )}
