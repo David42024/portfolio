@@ -1,154 +1,224 @@
 {
   "technologies": [
-    { "name": "Node.js", "icon": "nodejs", "color": "#339933" },
-    { "name": "TypeScript", "icon": "typescript", "color": "#3178C6" },
-    { "name": "Express", "icon": "express", "color": "#000000" },
-    { "name": "PostgreSQL", "icon": "postgresql", "color": "#4169E1" },
-    { "name": "Redis", "icon": "redis", "color": "#DC382D" },
-    { "name": "Docker", "icon": "docker", "color": "#2496ED" },
-    { "name": "Prisma", "icon": "prisma", "color": "#2D3748" },
     { "name": "Next.js", "icon": "nextjs", "color": "#000000" },
     { "name": "React", "icon": "react", "color": "#61DAFB" },
+    { "name": "TypeScript", "icon": "typescript", "color": "#3178C6" },
+    { "name": "Node.js", "icon": "nodejs", "color": "#339933" },
+    { "name": "NestJS", "icon": "nestjs", "color": "#E0234E" },
+    { "name": "Express", "icon": "express", "color": "#000000" },
+    { "name": "FastAPI", "icon": "fastapi", "color": "#009688" },
+    { "name": "Python", "icon": "python", "color": "#3776AB" },
+    { "name": "Laravel", "icon": "laravel", "color": "#FF2D20" },
+    { "name": "PHP", "icon": "php", "color": "#777BB4" },
+    { "name": "Vue.js", "icon": "vuejs", "color": "#4FC08D" },
+    { "name": "Vite", "icon": "vite", "color": "#646CFF" },
+    { "name": "PostgreSQL", "icon": "postgresql", "color": "#4169E1" },
+    { "name": "SQLite", "icon": "sqlite", "color": "#003B57" },
+    { "name": "Redis", "icon": "redis", "color": "#DC382D" },
+    { "name": "Prisma", "icon": "prisma", "color": "#2D3748" },
+    { "name": "TypeORM", "icon": "typeorm", "color": "#FE0902" },
     { "name": "Tailwind CSS", "icon": "tailwindcss", "color": "#06B6D4" },
+    { "name": "Docker", "icon": "docker", "color": "#2496ED" },
     { "name": "Git", "icon": "git", "color": "#F05032" },
-    { "name": "AWS", "icon": "aws", "color": "#FF9900" }
+    { "name": "GitHub Actions", "icon": "githubactions", "color": "#2088FF" },
+    { "name": "TensorFlow", "icon": "tensorflow", "color": "#FF6F00" },
+    { "name": "Streamlit", "icon": "streamlit", "color": "#FF4B4B" },
+    { "name": "Cloudinary", "icon": "cloudinary", "color": "#3448C5" }
   ],
   "skillCategories": [
-    { "name": "Backend", "order": 1 },
-    { "name": "Frontend", "order": 2 },
-    { "name": "Base de Datos", "order": 3 },
-    { "name": "DevOps", "order": 4 },
-    { "name": "Herramientas", "order": 5 }
+    {
+      "name": "Backend",
+      "order": 1
+    },
+    {
+      "name": "Frontend",
+      "order": 2
+    },
+    {
+      "name": "Base de Datos",
+      "order": 3
+    },
+    {
+      "name": "DevOps",
+      "order": 4
+    },
+    {
+      "name": "Herramientas",
+      "order": 5
+    }
   ],
   "skills": [
-    { "name": "Node.js", "level": 90, "icon": "nodejs", "category": "Backend" },
-    { "name": "TypeScript", "level": 85, "icon": "typescript", "category": "Backend" },
-    { "name": "Express", "level": 90, "icon": "express", "category": "Backend" },
-    { "name": "REST APIs", "level": 85, "icon": null, "category": "Backend" },
-    { "name": "GraphQL", "level": 70, "icon": "graphql", "category": "Backend" },
-    { "name": "React", "level": 80, "icon": "react", "category": "Frontend" },
-    { "name": "Next.js", "level": 75, "icon": "nextjs", "category": "Frontend" },
-    { "name": "Tailwind CSS", "level": 85, "icon": "tailwindcss", "category": "Frontend" },
-    { "name": "PostgreSQL", "level": 85, "icon": "postgresql", "category": "Base de Datos" },
-    { "name": "Redis", "level": 75, "icon": "redis", "category": "Base de Datos" },
-    { "name": "Prisma", "level": 85, "icon": "prisma", "category": "Base de Datos" },
-    { "name": "MongoDB", "level": 70, "icon": "mongodb", "category": "Base de Datos" },
-    { "name": "Docker", "level": 80, "icon": "docker", "category": "DevOps" },
-    { "name": "GitHub Actions", "level": 75, "icon": "githubactions", "category": "DevOps" },
-    { "name": "AWS", "level": 65, "icon": "aws", "category": "DevOps" },
-    { "name": "Git", "level": 90, "icon": "git", "category": "Herramientas" },
-    { "name": "Linux", "level": 80, "icon": "linux", "category": "Herramientas" },
-    { "name": "VS Code", "level": 95, "icon": "vscode", "category": "Herramientas" }
+    {
+      "name": "Next.js",
+      "level": 85,
+      "icon": "nextjs",
+      "category": "Frontend"
+    },
+    {
+      "name": "React",
+      "level": 85,
+      "icon": "react",
+      "category": "Frontend"
+    },
+    {
+      "name": "TypeScript",
+      "level": 85,
+      "icon": "typescript",
+      "category": "Backend"
+    },
+    {
+      "name": "Node.js",
+      "level": 85,
+      "icon": "nodejs",
+      "category": "Backend"
+    },
+    {
+      "name": "Express",
+      "level": 80,
+      "icon": "express",
+      "category": "Backend"
+    },
+    {
+      "name": "NestJS",
+      "level": 75,
+      "icon": "nestjs",
+      "category": "Backend"
+    },
+    {
+      "name": "FastAPI",
+      "level": 80,
+      "icon": "fastapi",
+      "category": "Backend"
+    },
+    {
+      "name": "Python",
+      "level": 85,
+      "icon": "python",
+      "category": "Backend"
+    },
+    {
+      "name": "Laravel",
+      "level": 75,
+      "icon": "laravel",
+      "category": "Backend"
+    },
+    {
+      "name": "Vue.js",
+      "level": 70,
+      "icon": "vuejs",
+      "category": "Frontend"
+    },
+    {
+      "name": "PostgreSQL",
+      "level": 85,
+      "icon": "postgresql",
+      "category": "Base de Datos"
+    },
+    {
+      "name": "SQLite",
+      "level": 85,
+      "icon": "sqlite",
+      "category": "Base de Datos"
+    },
+    {
+      "name": "Redis",
+      "level": 75,
+      "icon": "redis",
+      "category": "Base de Datos"
+    },
+    {
+      "name": "Docker",
+      "level": 80,
+      "icon": "docker",
+      "category": "DevOps"
+    },
+    {
+      "name": "GitHub Actions",
+      "level": 70,
+      "icon": "githubactions",
+      "category": "DevOps"
+    },
+    {
+      "name": "Git",
+      "level": 90,
+      "icon": "git",
+      "category": "Herramientas"
+    }
   ],
   "projects": [
     {
-      "slug": "api-ecommerce",
-      "title": "API E-Commerce",
-      "description": "API REST completa para plataforma de comercio electrónico con autenticación JWT, gestión de productos, carrito de compras y pasarela de pagos.",
-      "imageUrl": "https://res.cloudinary.com/dl4y5pap8/image/upload/portfolio/projects/ecommerce-api.jpg",
-      "githubUrl": "https://github.com/tuusuario/ecommerce-api",
-      "liveUrl": "https://api.ecommerce-demo.com",
+      "slug": "vineguard-ai",
+      "title": "VineGuard AI",
+      "description": "Plataforma de inteligencia artificial para el diagnóstico temprano de enfermedades en hojas de vid mediante visión por computadora. Integra cinco modelos de Machine Learning y Deep Learning, una API desarrollada con FastAPI, un laboratorio de entrenamiento en Streamlit y una aplicación web moderna construida con Next.js.",
+      "imageUrl": "/projects/vineguard-ai.png",
+      "githubUrl": "https://github.com/David42024/VineGuard-AI-Diagnostico-Uvas",
+      "liveUrl": "https://vine-guard-ai-diagnostico-uvas.vercel.app",
       "featured": true,
-      "technologies": ["Node.js", "TypeScript", "Express", "PostgreSQL", "Redis", "Docker"]
+      "technologies": [
+        "Python",
+        "FastAPI",
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "TensorFlow",
+        "Streamlit",
+        "SQLite"
+      ]
     },
     {
-      "slug": "task-management-system",
-      "title": "Sistema de Gestión de Tareas",
-      "description": "Aplicación full-stack para gestión de proyectos y tareas con autenticación, roles de usuario, notificaciones en tiempo real y reportes.",
-      "imageUrl": "https://res.cloudinary.com/dl4y5pap8/image/upload/portfolio/projects/task-system.jpg",
-      "githubUrl": "https://github.com/tuusuario/task-management",
-      "liveUrl": "https://tasks-demo.com",
+      "slug": "egresados-unt",
+      "title": "Plataforma de Egresados UNT",
+      "description": "Sistema integral para la gestión de egresados de la Universidad Nacional de Trujillo. Incluye bolsa laboral, gestión de empresas, postulaciones, dashboards analíticos, reportes PDF, autenticación JWT y Google OAuth, desarrollado con una arquitectura moderna basada en Next.js y NestJS.",
+      "imageUrl": "/projects/egresados.png",
+      "githubUrl": "https://github.com/David42024/EgresadosHub",
+      "liveUrl": "https://egresados-hub-web.vercel.app",
       "featured": true,
-      "technologies": ["Node.js", "TypeScript", "Next.js", "Prisma", "PostgreSQL", "Tailwind CSS"]
+      "technologies": [
+        "Next.js",
+        "React",
+        "NestJS",
+        "TypeScript",
+        "PostgreSQL",
+        "Redis",
+        "Tailwind CSS",
+        "Docker"
+      ]
     },
     {
-      "slug": "real-time-chat",
-      "title": "Chat en Tiempo Real",
-      "description": "Aplicación de chat con WebSockets, salas privadas y grupales, envío de archivos y notificaciones push.",
-      "imageUrl": "https://res.cloudinary.com/dl4y5pap8/image/upload/portfolio/projects/chat-app.jpg",
-      "githubUrl": "https://github.com/tuusuario/realtime-chat",
-      "liveUrl": null,
-      "featured": false,
-      "technologies": ["Node.js", "TypeScript", "React", "Redis"]
+      "slug": "sihorarios-unt",
+      "title": "SIHorarios UNT",
+      "description": "Sistema web para la gestión y generación automática de horarios académicos de la Universidad Nacional de Trujillo. Incorpora un motor híbrido de asignación, gestión de docentes, cursos, aulas, reportes PDF, auditoría y control de usuarios mediante autenticación JWT.",
+      "imageUrl": "/projects/sihorarios.png",
+      "githubUrl": "https://github.com/tato09salm/horariosUNT",
+      "liveUrl": "https://sihorarios.robertoqr.dev",
+      "featured": true,
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "Node.js",
+        "PostgreSQL",
+        "Docker"
+      ]
     },
     {
-      "slug": "portfolio-website",
-      "title": "Portfolio Personal",
-      "description": "Este portfolio - desarrollado con Next.js, TypeScript y un backend en Express. Incluye panel de administración y API documentada.",
-      "imageUrl": "https://res.cloudinary.com/dl4y5pap8/image/upload/portfolio/projects/portfolio.jpg",
-      "githubUrl": "https://github.com/tuusuario/portfolio",
-      "liveUrl": "https://tuportfolio.com",
+      "slug": "rosas-eternas-hakuks",
+      "title": "Rosas Eternas Hakuks",
+      "description": "Tienda virtual desarrollada con Laravel, Vue e Inertia para la comercialización de arreglos florales. Integra almacenamiento de imágenes en Cloudinary, despliegue en Vercel y persistencia de datos mediante PostgreSQL alojado en Neon.",
+      "imageUrl": "/projects/rosas-eternas.png",
+      "githubUrl": "https://github.com/David42024/rosaseternashakuks",
+      "liveUrl": "https://rosaseternashakuks-ldfo-orcin.vercel.app",
       "featured": true,
-      "technologies": ["Next.js", "TypeScript", "Express", "Prisma", "PostgreSQL", "Tailwind CSS"]
+      "technologies": [
+        "Laravel",
+        "PHP",
+        "Vue.js",
+        "Vite",
+        "PostgreSQL",
+        "Cloudinary",
+        "Docker"
+      ]
     }
   ],
-  "certificates": [
-    {
-      "title": "Node.js Application Developer",
-      "issuer": "OpenJS Foundation",
-      "issueDate": "2024-03-15",
-      "credentialUrl": "https://openjsf.org/certification/verify/abc123",
-      "imageUrl": "https://res.cloudinary.com/dl4y5pap8/image/upload/portfolio/certificates/nodejs-cert.jpg",
-      "skills": ["Node.js"]
-    },
-    {
-      "title": "AWS Certified Developer Associate",
-      "issuer": "Amazon Web Services",
-      "issueDate": "2024-01-20",
-      "credentialUrl": "https://aws.amazon.com/verification/abc123",
-      "imageUrl": "https://res.cloudinary.com/dl4y5pap8/image/upload/portfolio/certificates/aws-cert.jpg",
-      "skills": ["AWS"]
-    },
-    {
-      "title": "Docker Certified Associate",
-      "issuer": "Docker Inc.",
-      "issueDate": "2023-11-10",
-      "credentialUrl": "https://credentials.docker.com/abc123",
-      "imageUrl": "https://res.cloudinary.com/dl4y5pap8/image/upload/portfolio/certificates/docker-cert.jpg",
-      "skills": ["Docker"]
-    },
-    {
-      "title": "Professional TypeScript Development",
-      "issuer": "Udemy",
-      "issueDate": "2023-08-05",
-      "credentialUrl": "https://udemy.com/certificate/abc123",
-      "imageUrl": "https://res.cloudinary.com/dl4y5pap8/image/upload/portfolio/certificates/typescript-cert.jpg",
-      "skills": ["TypeScript"]
-    }
-  ],
-  "experiences": [
-    {
-      "company": "Tech Solutions S.A.C.",
-      "position": "Backend Developer Senior",
-      "description": "Desarrollo y mantenimiento de APIs REST para aplicaciones empresariales. Implementación de arquitectura de microservicios. Optimización de consultas SQL y caché con Redis. Mentoring a desarrolladores junior.",
-      "location": "Trujillo, Perú",
-      "startDate": "2023-06-01",
-      "endDate": null,
-      "current": true,
-      "order": 1,
-      "technologies": ["Node.js", "TypeScript", "PostgreSQL", "Redis", "Docker"]
-    },
-    {
-      "company": "Startup Innovadora",
-      "position": "Full Stack Developer",
-      "description": "Desarrollo de plataforma SaaS desde cero. Implementación de sistema de autenticación y autorización. Integración con APIs de terceros (Stripe, SendGrid). Despliegue en AWS.",
-      "location": "Remoto",
-      "startDate": "2021-09-01",
-      "endDate": "2023-05-31",
-      "current": false,
-      "order": 2,
-      "technologies": ["Node.js", "React", "PostgreSQL"]
-    },
-    {
-      "company": "Agencia Digital XYZ",
-      "position": "Junior Developer",
-      "description": "Desarrollo de sitios web y aplicaciones para clientes. Mantenimiento de proyectos existentes. Colaboración en equipo usando metodologías ágiles.",
-      "location": "Trujillo, Perú",
-      "startDate": "2020-03-01",
-      "endDate": "2021-08-31",
-      "current": false,
-      "order": 3,
-      "technologies": ["Node.js", "React"]
-    }
-  ]
+  "certificates": [],
+  "experiences": []
 }
