@@ -38,6 +38,7 @@
     "db:studio": { "cache": false, "persistent": true },
     "db:reset": { "cache": false },
     "db:seed": { "cache": false },
+    "db:seed:prod": { "cache": false },
     "db:push": { "cache": false },
     "db:backup": { "cache": false }
   }

@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const techStack = ["Node.js", "TypeScript", "PostgreSQL", "Redis", "Docker"];
+const techStack = ["TypeScript", "Next.js", "Node.js", "PostgreSQL", "Python"];
 
 export function HeroSection() {
   return (
